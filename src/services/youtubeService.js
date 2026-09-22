@@ -21,6 +21,76 @@ export const GROUNDED_VIDEO_CATALOG = {
       'HTTPS padlock ka matlab connection secure hai, website safe hai ye guarantee nahi!',
       'Attackers "netbanking.hdfc" ko apna subdomain bana kar loot te hain.'
     ],
+    checkpoint: {
+      question: 'In the target URL, who is the true cryptographic and administrative owner of the destination server?',
+      questionHinglish: 'Is target URL mein destination server ka actual owner kaun hai?',
+      evidenceType: 'PHISHING TELEMETRY TARGET',
+      evidence: 'https://login.paypal.com.account-security.xyz/auth',
+      options: [
+        { text: 'PayPal, Inc. (San Jose, CA)', textHinglish: 'PayPal, Inc. (San Jose, CA)' },
+        { text: 'Attacker controlling "account-security.xyz"', textHinglish: 'Attacker controlling "account-security.xyz"' },
+        { text: 'Google Cloud Platform Root Authority', textHinglish: 'Google Cloud Platform Root Authority' }
+      ],
+      correctIndex: 1,
+      explanation: '"account-security.xyz" is the apex domain directly before the first slash. "login.paypal.com" is merely an attacker-created subdomain crafted to deceive victims.',
+      explanationHinglish: '"account-security.xyz" pehla domain hai slash se pehle. "login.paypal.com" attacker ka banaya hua subdomain hai.'
+    },
+    checkpoint: {
+      question: 'During an Active Directory Kerberoasting attack, which specific Kerberos ticket component is extracted for offline password cracking?',
+      questionHinglish: 'Active Directory Kerberoasting attack mein offline hash cracking ke liye kaunsa ticket extract kiya jata hai?',
+      evidenceType: 'POWERSHELL / TGS EXPLOIT COMMAND',
+      evidence: 'Get-DomainUser -SPN | Request-SPNTicket -OutputFormat Hashcat',
+      options: [
+        { text: 'TGS (Ticket Granting Service) ticket encrypted with service account password hash', textHinglish: 'TGS ticket jo service account ke password hash se encrypted hota hai' },
+        { text: 'TGT (Ticket Granting Ticket) master krbtgt key from the Domain Controller', textHinglish: 'Domain Controller ka primary krbtgt key' },
+        { text: 'NTLMv2 challenge response captured via LLMNR broadcast poisoning', textHinglish: 'LLMNR broadcast se pakda gaya NTLMv2 challenge' }
+      ],
+      correctIndex: 0,
+      explanation: 'Attackers query SPNs and request TGS service tickets. Because TGS tickets are encrypted with the target service account password hash, they can be cracked offline on GPUs via Hashcat.',
+      explanationHinglish: 'Attacker SPN ke liye TGS ticket mangta hai. Ye ticket service account ke password se encrypt hota hai, isliye isko offline GPU par crack kiya ja sakta hai.'
+    },
+    checkpoint: {
+      question: 'Which DMARC policy setting ensures that emails failing SPF and DKIM alignment are unconditionally rejected by recipient mail servers?',
+      questionHinglish: 'Kaun sa DMARC policy setting fake emails ko inbox mein pahunchne se unconditionally block karta hai?',
+      evidenceType: 'DNS TXT RECORD CONFIGURATION',
+      evidence: '_dmarc.enterprise.internal IN TXT "v=DMARC1; p=reject; pct=100; rua=mailto:dmarc@enterprise.internal"',
+      options: [
+        { text: 'p=none (monitoring and telemetry mode only)', textHinglish: 'p=none (sirf monitoring mode)' },
+        { text: 'p=reject (immediate drop/block policy enforcement)', textHinglish: 'p=reject (immediate blocking policy)' },
+        { text: 'p=quarantine with permissive SPF alignment', textHinglish: 'p=quarantine permissive alignment ke sath' }
+      ],
+      correctIndex: 1,
+      explanation: 'Setting "p=reject" instructs all receiving MTAs to reject and drop fraudulent messages outright, shielding employees from executive spoofing.',
+      explanationHinglish: '"p=reject" set karne se fake emails server level par hi drop ho jaate hain aur kabhi user ke inbox tak nahi pahunchte.'
+    },
+    checkpoint: {
+      question: 'What defensive control most reliably prevents MFA Push Bombing (Fatigue) credential compromises?',
+      questionHinglish: 'MFA Push Bombing (Fatigue) attacks ko rokne ke liye sabse effective control kaun sa hai?',
+      evidenceType: 'IAM IDENTITY AUTH LOG',
+      evidence: 'AUTH_GATEWAY: 42 push notification prompts delivered within 120 seconds to mobile client',
+      options: [
+        { text: 'Number Matching Challenge + FIDO2 / WebAuthn Hardware Passkeys', textHinglish: 'Number Matching + FIDO2 Hardware Passkeys' },
+        { text: 'Increasing SMS token timeout to 15 minutes', textHinglish: 'SMS token time limit 15 minutes tak badhana' },
+        { text: 'Muting notification sounds on mobile authenticator apps', textHinglish: 'Mobile phone notifications mute karna' }
+      ],
+      correctIndex: 0,
+      explanation: 'Number matching requires the user to type a 2-digit on-screen number into the app, eliminating blind acceptance. FIDO2 passkeys use cryptographic origin binding that fatigue attacks cannot compromise.',
+      explanationHinglish: 'Number matching me screen ka 2-digit number dekh kar app me dalna padta hai, jisse user galti se approve nahi kar sakta.'
+    },
+    checkpoint: {
+      question: 'Which HTTP response header mitigates Cross-Site Scripting (XSS) by restricting executable script origins?',
+      questionHinglish: 'XSS attacks ko rokne ke liye kaun sa HTTP header executable script origins ko limit karta hai?',
+      evidenceType: 'HTTP SECURITY RESPONSE HEADER',
+      evidence: "Content-Security-Policy: default-src 'self'; script-src 'self' https://trustedscripts.org;",
+      options: [
+        { text: 'Content-Security-Policy (CSP)', textHinglish: 'Content-Security-Policy (CSP)' },
+        { text: 'Access-Control-Allow-Origin: *', textHinglish: 'Access-Control-Allow-Origin: *' },
+        { text: 'X-Powered-By: Express', textHinglish: 'X-Powered-By: Express' }
+      ],
+      correctIndex: 0,
+      explanation: 'Content-Security-Policy (CSP) restricts where scripts and assets can load from, stopping injected attacker payloads from executing.',
+      explanationHinglish: 'CSP header browser ko batata hai ki scripts kahan se load ho sakti hain, jisse injected attacker code run nahi hota.'
+    },
     microNotes: [
       {
         time: '01:20',
@@ -179,6 +249,20 @@ export class YouTubeService {
       title: `${microTopic} — Practical Security & Exploit Mechanics`,
       channel: 'freeCodeCamp.org (Verified)',
       duration: '15:00',
+      checkpoint: {
+        question: `In production environments handling ${microTopic}, what is the foundational principle for securing infrastructure?`,
+        questionHinglish: `${microTopic} handle karte waqt production security ka sabse zaroori rule kaun sa hai?`,
+        evidenceType: 'DEFENSE-IN-DEPTH POLICY',
+        evidence: `POLICY_RULE [ID: SEC-${microTopic.replace(/[^A-Za-z0-9]/g, '').slice(0, 8).toUpperCase()}] [ENFORCE: STRICT_LEAST_PRIVILEGE]`,
+        options: [
+          { text: 'Enforce Least Privilege, cryptographic validation, and continuous audit logging', textHinglish: 'Least Privilege aur cryptographic validation enforce karna' },
+          { text: 'Rely purely on default administrative credentials and perimeter firewalls', textHinglish: 'Default passwords aur simple firewall par bharosa karna' },
+          { text: 'Disable security telemetry to improve CPU throughput', textHinglish: 'Speed badhane ke liye logs aur security band karna' }
+        ],
+        correctIndex: 0,
+        explanation: 'Enforcing least privilege and cryptographically verifying every transaction ensures that even if one component is compromised, lateral movement is strictly blocked.',
+        explanationHinglish: 'Least privilege aur cryptographic check se attacker ek jagah ghusne ke baad baaki servers me move nahi kar pata.'
+      },
       cheatSheet: [
         'Understand the underlying protocol mechanics before applying mitigations.',
         'Always verify cryptographic signatures, origin domains, and session tokens.',

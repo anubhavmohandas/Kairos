@@ -17,6 +17,20 @@ export function renderLearningLab(container) {
   const activeTopic = labState.activeMicroTopic || 'Subdomain Hierarchy & Lookalike Spoofing';
   const videoData = youtube.getVideoForTopic(activeTopic);
   const isCheckpointPassed = labState.checkpointPassed;
+  const activeCheckpoint = videoData.checkpoint || {
+    question: 'In the target URL, who is the true cryptographic and administrative owner of the destination server?',
+    questionHinglish: 'Is target URL mein destination server ka actual owner kaun hai?',
+    evidenceType: 'PHISHING TELEMETRY TARGET',
+    evidence: 'https://login.paypal.com.account-security.xyz/auth',
+    options: [
+      { text: 'PayPal, Inc. (San Jose, CA)', textHinglish: 'PayPal, Inc. (San Jose, CA)' },
+      { text: 'Attacker controlling "account-security.xyz"', textHinglish: 'Attacker controlling "account-security.xyz"' },
+      { text: 'Google Cloud Platform Root Authority', textHinglish: 'Google Cloud Platform Root Authority' }
+    ],
+    correctIndex: 1,
+    explanation: '"account-security.xyz" is the apex domain directly before the first slash. "login.paypal.com" is merely an attacker-created subdomain crafted to deceive victims.',
+    explanationHinglish: '"account-security.xyz" pehla domain hai slash se pehle. "login.paypal.com" attacker ka banaya hua subdomain hai.'
+  };
 
   // Helper: Convert "MM:SS" string to total seconds
   function parseTimeToSeconds(timeStr) {
@@ -213,32 +227,96 @@ export function renderLearningLab(container) {
           <!-- Anti-Zombie Active Reflection Checkpoint -->
           <div class="anti-zombie-checkpoint" id="checkpoint-box">
             <div class="checkpoint-header">
-              <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg> Anti-Zombie Active Reflection Checkpoint</span>
-              <span style="margin-left: auto; font-size: 0.75rem; font-family: var(--font-mono); color: var(--text-primary);">
-                ${isCheckpointPassed ? ' PASSED (+50 XP)' : 'PAUSED FOR RECALL'}
-              </span>
+              <div class="checkpoint-header-left">
+                <div class="checkpoint-icon-badge">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                  </svg>
+                </div>
+                <div>
+                  <div class="checkpoint-eyebrow">// ACTIVE RECALL PROTOCOL • ZERO MINDLESS SCROLL</div>
+                  <h3 class="checkpoint-title">
+                    ${isHinglish ? 'Anti-Zombie Active Reflection Checkpoint' : 'Anti-Zombie Active Reflection Checkpoint'}
+                  </h3>
+                </div>
+              </div>
+
+              <div class="checkpoint-status-pill ${isCheckpointPassed ? 'status-passed' : 'status-paused'}">
+                ${isCheckpointPassed ? `
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  <span>${isHinglish ? 'VERIFIED (+50 XP)' : 'VERIFIED (+50 XP)'}</span>
+                ` : `
+                  <span class="checkpoint-pulse-dot"></span>
+                  <span>${isHinglish ? 'PAUSED FOR RECALL' : 'PAUSED FOR RECALL'}</span>
+                `}
+              </div>
             </div>
+
             <p class="checkpoint-q">
-              ${isHinglish
-                ? 'Quick Check: In the URL "https://login.paypal.com.account-security.xyz/auth", who actually owns the hosting server?'
-                : 'Active Recall: In the URL "https://login.paypal.com.account-security.xyz/auth", who is the true owner of the destination server?'}
+              <span class="checkpoint-q-prefix">${isHinglish ? 'Active Recall Task:' : 'Active Recall Task:'}</span>
+              ${isHinglish ? activeCheckpoint.questionHinglish : activeCheckpoint.question}
             </p>
 
+            ${activeCheckpoint.evidence ? `
+              <div class="checkpoint-target-box">
+                <div class="target-box-header">
+                  <span class="target-box-tag">// INSPECT TELEMETRY TARGET</span>
+                  <span class="target-box-type">${activeCheckpoint.evidenceType || 'TARGET TELEMETRY'}</span>
+                </div>
+                <div class="target-box-content">
+                  <code>${activeCheckpoint.evidence}</code>
+                </div>
+              </div>
+            ` : ''}
+
             ${isCheckpointPassed ? `
-              <div style="background: rgba(16, 185, 129, 0.2); padding: 0.75rem 1rem; border-radius: var(--radius-sm); border: 1px solid var(--neon-green); color: var(--text-main); font-size: 0.9rem;">
-                 <strong>${isHinglish ? 'Shaabash!' : 'Correct Recall!'}</strong> "account-security.xyz" is the apex domain right before the first slash. "login.paypal.com" is an attacker subdomain.
+              <!-- Solved / Verified Success Card -->
+              <div class="checkpoint-success-card">
+                <div class="success-card-header">
+                  <div class="success-badge-ring">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="success-title">${isHinglish ? 'Shaabash! Recall Verified' : 'Checkpoint Cleared — Active Recall Verified!'}</div>
+                    <div class="success-subtitle">${isHinglish ? '+50 XP Awarded • Mindless scrolling defeated' : '+50 XP Awarded • Concept retention locked in'}</div>
+                  </div>
+                </div>
+                <div class="success-explanation">
+                  <strong>${isHinglish ? 'Deep Dive Analysis:' : 'Key Takeaway:'}</strong>
+                  <span>${isHinglish ? activeCheckpoint.explanationHinglish : activeCheckpoint.explanation}</span>
+                </div>
+                <div class="success-actions">
+                  <button type="button" class="btn btn-sm btn-primary" id="btn-resume-video-lab">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                    ${isHinglish ? 'Continue Masterclass' : 'Resume Masterclass'}
+                  </button>
+                  <button type="button" class="btn btn-sm btn-ghost" id="btn-retest-checkpoint">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+                    ${isHinglish ? 'Retest Checkpoint' : 'Test Again'}
+                  </button>
+                </div>
               </div>
             ` : `
-              <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 0.75rem;">
-                <button class="btn btn-ghost btn-sm checkpoint-opt-btn" data-correct="false">
-                  A) PayPal, Inc. (San Jose, CA)
-                </button>
-                <button class="btn btn-ghost btn-sm checkpoint-opt-btn" data-correct="true">
-                  B) Attacker owning "account-security.xyz"
-                </button>
-                <button class="btn btn-ghost btn-sm checkpoint-opt-btn" data-correct="false">
-                  C) Google Cloud Platform Root
-                </button>
+              <!-- Option List (Vertical Full-Width Tactical Choice Cards) -->
+              <div class="checkpoint-options-list">
+                ${activeCheckpoint.options.map((opt, idx) => {
+                  const letters = ['A', 'B', 'C', 'D'];
+                  const isCorrect = idx === activeCheckpoint.correctIndex;
+                  return `
+                    <button type="button" class="checkpoint-opt-btn" data-index="${idx}" data-correct="${isCorrect}">
+                      <div class="checkpoint-opt-letter">${letters[idx]}</div>
+                      <div class="checkpoint-opt-text">${isHinglish ? opt.textHinglish : opt.text}</div>
+                      <div class="checkpoint-opt-indicator">
+                        <svg class="checkpoint-icon-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        <svg class="checkpoint-icon-cross" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                      </div>
+                    </button>
+                  `;
+                }).join('')}
               </div>
             `}
           </div>
@@ -548,15 +626,40 @@ export function renderLearningLab(container) {
       const isCorrect = btn.getAttribute('data-correct') === 'true';
       if (isCorrect) {
         soundFX.playSuccess();
-        store.state.learningLab.checkpointPassed = true;
-        store.addXP(50);
-        store.notify();
+        btn.classList.add('correct');
+        container.querySelectorAll('.checkpoint-opt-btn').forEach(b => {
+          if (b !== btn) b.classList.add('dimmed');
+          b.disabled = true;
+        });
+        setTimeout(() => {
+          store.state.learningLab.checkpointPassed = true;
+          store.addXP(50);
+          store.broadcastPresence(`${store.state.user.name} cleared Anti-Zombie Checkpoint on ${activeTopic} (+50 XP)`, 'progress');
+          store.notify();
+        }, 400);
       } else {
         soundFX.playAlert();
-        btn.style.borderColor = 'var(--neon-crimson)';
-        btn.style.background = 'rgba(255, 0, 84, 0.2)';
+        btn.classList.add('incorrect');
+        btn.classList.add('shake');
+        setTimeout(() => btn.classList.remove('shake'), 450);
       }
     });
+  });
+
+  // Resume / Retest handlers
+  container.querySelector('#btn-resume-video-lab')?.addEventListener('click', () => {
+    soundFX.playClick();
+    const iframe = container.querySelector('#lab-video-iframe');
+    if (iframe) {
+      iframe.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      iframe.contentWindow?.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+    }
+  });
+
+  container.querySelector('#btn-retest-checkpoint')?.addEventListener('click', () => {
+    soundFX.playClick();
+    store.state.learningLab.checkpointPassed = false;
+    store.notify();
   });
 
   // Custom File Ingestion handlers with Drag & Drop

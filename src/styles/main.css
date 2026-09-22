@@ -3105,58 +3105,434 @@ body {
   flex-shrink: 0;
 }
 
+/* ==========================================================================
+   ANTI-ZOMBIE ACTIVE REFLECTION CHECKPOINT (NEO-BRUTALIST HUD)
+   ========================================================================== */
 .anti-zombie-checkpoint {
-  background: #fffbeb;
-  border: var(--border-neo);
+  background: var(--bg-card);
+  border: 2px solid var(--border-color);
+  border-left: 5px solid #f59e0b;
   border-radius: var(--radius-lg);
   padding: 24px;
-  box-shadow: var(--shadow-btn);
+  box-shadow: 4px 4px 0px var(--border-color);
+  transition: all var(--transition-normal);
+  margin-top: 1rem;
 }
 
 [data-theme="dark"] .anti-zombie-checkpoint {
-  background: #78350f22;
-  border-color: #d97706;
+  background: #0d131f;
+  border-color: rgba(245, 158, 11, 0.4);
+  border-left-color: #f59e0b;
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="light"] .anti-zombie-checkpoint {
+  background: #ffffff;
+  border-color: #111827;
+  border-left-color: #d97706;
+  box-shadow: 4px 4px 0px #111827;
 }
 
 .checkpoint-header {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-family: var(--font-display);
-  font-size: 0.95rem;
-  font-weight: 800;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.checkpoint-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.checkpoint-icon-badge {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-sm);
+  background: rgba(245, 158, 11, 0.15);
+  border: 1.5px solid #f59e0b;
+  color: #f59e0b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 2px 2px 0px var(--border-color);
+}
+
+[data-theme="light"] .checkpoint-icon-badge {
+  background: #fef3c7;
+  border-color: #d97706;
   color: #b45309;
-  margin-bottom: 10px;
 }
 
-[data-theme="dark"] .checkpoint-header {
-  color: #fbbf24;
+.checkpoint-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #f59e0b;
+  letter-spacing: 0.06em;
+  margin-bottom: 2px;
 }
 
+[data-theme="light"] .checkpoint-eyebrow {
+  color: #b45309;
+}
+
+.checkpoint-title {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin: 0;
+  line-height: 1.25;
+}
+
+/* Status Pill */
+.checkpoint-status-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  border: 1.5px solid var(--border-color);
+}
+
+.checkpoint-status-pill.status-paused {
+  background: rgba(245, 158, 11, 0.15);
+  border-color: #f59e0b;
+  color: #f59e0b;
+}
+
+[data-theme="light"] .checkpoint-status-pill.status-paused {
+  background: #fef3c7;
+  border-color: #d97706;
+  color: #92400e;
+}
+
+.checkpoint-status-pill.status-passed {
+  background: rgba(16, 185, 129, 0.15);
+  border-color: #10b981;
+  color: #10b981;
+}
+
+[data-theme="light"] .checkpoint-status-pill.status-passed {
+  background: #d1fae5;
+  border-color: #059669;
+  color: #065f46;
+}
+
+.checkpoint-pulse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #f59e0b;
+  box-shadow: 0 0 8px #f59e0b;
+  animation: pulse-ring 1.5s infinite;
+}
+
+/* Question Prompt */
 .checkpoint-q {
   font-size: 0.95rem;
   font-weight: 600;
   color: var(--text-main);
   margin-bottom: 14px;
-  line-height: 1.5;
+  line-height: 1.55;
+}
+
+.checkpoint-q-prefix {
+  font-weight: 800;
+  color: #f59e0b;
+  margin-right: 6px;
+}
+
+[data-theme="light"] .checkpoint-q-prefix {
+  color: #b45309;
+}
+
+/* Target Snippet Box */
+.checkpoint-target-box {
+  background: var(--bg-card-alt);
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 10px 14px;
+  margin-bottom: 16px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="dark"] .checkpoint-target-box {
+  background: #070b13;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.target-box-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.target-box-tag {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}
+
+.target-box-type {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: #f59e0b;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: rgba(245, 158, 11, 0.12);
+}
+
+.target-box-content {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--neon-cyan);
+  word-break: break-all;
+  user-select: all;
+}
+
+[data-theme="light"] .target-box-content {
+  color: #0284c7;
+}
+
+/* Options List (Vertical Full-Width Tactical Choice Cards) */
+.checkpoint-options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .checkpoint-opt-btn {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
   background: var(--bg-card);
-  border: var(--border-mid);
+  border: 2px solid var(--border-color);
   border-radius: var(--radius-md);
-  padding: 8px 14px;
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: var(--text-main);
-  box-shadow: var(--shadow-sm);
+  padding: 14px 18px;
   cursor: pointer;
+  text-align: left;
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text-main);
+  box-shadow: 2px 2px 0px var(--border-color);
   transition: all var(--transition-fast);
 }
 
-.checkpoint-opt-btn:hover {
-  background: var(--color-yellow);
-  transform: translate(-1px, -1px);
+[data-theme="dark"] .checkpoint-opt-btn {
+  background: #111827;
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="light"] .checkpoint-opt-btn {
+  background: #ffffff;
+  border-color: #111827;
+  box-shadow: 2px 2px 0px #111827;
+}
+
+.checkpoint-opt-btn:hover:not(:disabled) {
+  transform: translate(-2px, -2px);
+  border-color: #f59e0b;
+  box-shadow: 4px 4px 0px var(--border-color);
+  background: var(--bg-card-alt);
+}
+
+[data-theme="light"] .checkpoint-opt-btn:hover:not(:disabled) {
+  background: #fffbeb;
+  border-color: #d97706;
+  box-shadow: 4px 4px 0px #111827;
+}
+
+.checkpoint-opt-letter {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-card-alt);
+  border: 1.5px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-weight: 900;
+  font-size: 0.88rem;
+  color: var(--text-main);
+  flex-shrink: 0;
+  transition: all var(--transition-fast);
+}
+
+[data-theme="dark"] .checkpoint-opt-letter {
+  background: #1f293d;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="light"] .checkpoint-opt-letter {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+}
+
+.checkpoint-opt-text {
+  flex: 1;
+  line-height: 1.45;
+}
+
+.checkpoint-opt-indicator {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.checkpoint-icon-check,
+.checkpoint-icon-cross {
+  display: none;
+}
+
+/* Correct state */
+.checkpoint-opt-btn.correct {
+  background: rgba(16, 185, 129, 0.12) !important;
+  border-color: #10b981 !important;
+  color: #065f46 !important;
+  box-shadow: 3px 3px 0px #10b981 !important;
+}
+
+[data-theme="dark"] .checkpoint-opt-btn.correct {
+  background: rgba(16, 185, 129, 0.15) !important;
+  color: #34d399 !important;
+}
+
+.checkpoint-opt-btn.correct .checkpoint-opt-letter {
+  background: #10b981 !important;
+  border-color: #059669 !important;
+  color: #ffffff !important;
+}
+
+.checkpoint-opt-btn.correct .checkpoint-icon-check {
+  display: block;
+  stroke: #10b981;
+}
+
+/* Incorrect state */
+.checkpoint-opt-btn.incorrect {
+  background: rgba(239, 68, 68, 0.12) !important;
+  border-color: #ef4444 !important;
+  color: #991b1b !important;
+  box-shadow: 3px 3px 0px #ef4444 !important;
+}
+
+[data-theme="dark"] .checkpoint-opt-btn.incorrect {
+  background: rgba(239, 68, 68, 0.15) !important;
+  color: #f87171 !important;
+}
+
+.checkpoint-opt-btn.incorrect .checkpoint-opt-letter {
+  background: #ef4444 !important;
+  border-color: #dc2626 !important;
+  color: #ffffff !important;
+}
+
+.checkpoint-opt-btn.incorrect .checkpoint-icon-cross {
+  display: block;
+  stroke: #ef4444;
+}
+
+.checkpoint-opt-btn.dimmed {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* Shake Animation */
+.checkpoint-opt-btn.shake {
+  animation: kairos-shake 0.4s ease;
+}
+
+@keyframes kairos-shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-6px); }
+  40%, 80% { transform: translateX(6px); }
+}
+
+/* Success / Passed Card */
+.checkpoint-success-card {
+  background: rgba(16, 185, 129, 0.08);
+  border: 1.5px solid #10b981;
+  border-radius: var(--radius-md);
+  padding: 18px;
+  box-shadow: 2px 2px 0px #10b981;
+}
+
+[data-theme="dark"] .checkpoint-success-card {
+  background: rgba(16, 185, 129, 0.1);
+  border-color: #059669;
+}
+
+.success-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.success-badge-ring {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(16, 185, 129, 0.2);
+  border: 1.5px solid #10b981;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.success-title {
+  font-size: 1.02rem;
+  font-weight: 800;
+  color: #10b981;
+}
+
+[data-theme="light"] .success-title {
+  color: #065f46;
+}
+
+.success-subtitle {
+  font-size: 0.76rem;
+  font-family: var(--font-mono);
+  color: var(--text-secondary);
+}
+
+.success-explanation {
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--text-main);
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  margin-bottom: 16px;
+}
+
+.success-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 .lab-sidebar-column {
