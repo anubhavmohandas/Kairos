@@ -19,9 +19,180 @@
         "cloud-security": 1
       },
       "createdAt": "2026-09-22T07:28:30.752Z"
+    },
+    {
+      "id": "usr_1790062467105_o936l",
+      "username": "TestAgent",
+      "email": "test@kairos.io",
+      "passwordHash": "0596eb75052d3576d81323141fcfc9a3e1d84af658fa77fbdd4cef73787c2b4d",
+      "callSign": "Cipher_Test",
+      "squad": "ZeroDay Hunters",
+      "targetTrack": "phishing-social-eng",
+      "level": 1,
+      "xp": 250,
+      "streak": 1,
+      "unlockedTiers": {
+        "phishing-social-eng": 1,
+        "malware-defense": 1,
+        "network-exploitation": 1,
+        "identity-token": 1,
+        "cloud-security": 1
+      },
+      "createdAt": "2026-09-22T07:34:27.105Z"
+    },
+    {
+      "id": "usr_1790062581501_mszmh",
+      "username": "Anubhav",
+      "email": "anubhav@kairos.io",
+      "passwordHash": "07480fb9e85b9396af06f006cf1c95024af2531c65fb505cfbd0add1e2f31573",
+      "callSign": "Zero_Day_A",
+      "squad": "ZeroDay Hunters",
+      "targetTrack": "phishing-social-eng",
+      "level": 1,
+      "xp": 250,
+      "streak": 1,
+      "unlockedTiers": {
+        "phishing-social-eng": 1,
+        "malware-defense": 1,
+        "network-exploitation": 1,
+        "identity-token": 1,
+        "cloud-security": 1
+      },
+      "createdAt": "2026-09-22T07:36:21.501Z"
     }
   ],
-  "diagnostics": [],
+  "diagnostics": [
+    {
+      "id": "diag_1790062818430",
+      "userId": "guest",
+      "domain": "Phishing & Social Engineering",
+      "score": 40,
+      "missedCount": 3,
+      "missedQuestions": [
+        {
+          "id": "q_phish_1",
+          "title": "The Deceptive Banking Portal",
+          "titleHinglish": "Dhokhebaaz Netbanking URL",
+          "microTopic": "Subdomain Hierarchy & Lookalike Spoofing",
+          "scenario": "An employee received an urgent SMS: \"Your HDFC account KYC is expired. Update immediately.\" They clicked the link and are prompted for login.",
+          "scenarioHinglish": "Ek employee ko urgent SMS mila: \"HDFC account KYC expire ho gaya hai.\" Usne link click kiya aur login page khul gaya.",
+          "evidenceType": "url",
+          "evidence": "https://netbanking.hdfcbank.com.co/auth/verify?session=9281",
+          "options": [
+            {
+              "text": "Safe: The URL begins with \"netbanking.hdfcbank.com\" and has an HTTPS padlock.",
+              "textHinglish": "Safe hai: URL mein \"netbanking.hdfcbank.com\" likha hai aur HTTPS padlock bhi hai."
+            },
+            {
+              "text": "Phishing: The apex root domain is \"com.co\", not \"hdfcbank.com\". \"netbanking.hdfcbank\" is an attacker subdomain.",
+              "textHinglish": "Phishing hai: Asli root domain \"com.co\" hai, \"hdfcbank\" nahi. Attacker ne subdomain bana rakha hai."
+            },
+            {
+              "text": "Safe: \"com.co\" is the official Colombian subsidiary domain for Indian banking systems.",
+              "textHinglish": "Safe hai: \"com.co\" Indian banks ka official international domain extension hota hai."
+            },
+            {
+              "text": "Phishing: Any URL with a query parameter \"?session=\" is an active ransomware payload.",
+              "textHinglish": "Phishing hai: Har URL jisme \"?session=\" hota hai wo ransomware hota hai."
+            }
+          ],
+          "correctIndex": 1,
+          "el10": "Think of a domain like a street address. The LAST part before the first single slash (/) is the actual house owner. Here, the house owner is \"com.co\", and the attacker named their bedroom \"netbanking.hdfcbank\".",
+          "el10Hinglish": "Domain ko ghar ke address ki tarah samjho. Pehle single slash (/) se theek pehle jo naam hota hai, wahi asli makaan-malik hai! Yahan makaan-malik \"com.co\" hai, aur attacker ne apne kamre ka naam \"netbanking.hdfcbank\" rakh diya hai.",
+          "soWhat": "Entering credentials here gives attackers full session access, leading to instant financial fraud or employee credential harvesting.",
+          "remediationQuery": "how to read DNS domain names and subdomains cybersecurity",
+          "videoId": "Vf6L2x5zHbg",
+          "videoTitle": "DNS Explained: How Domain Spoofing Actually Works",
+          "cheatSheet": [
+            "The apex domain is always immediately to the left of the public suffix (.com, .org, .co).",
+            "HTTPS padlocks only mean encryption is on—not that the website owner is legitimate!",
+            "Always read domain names from right to left starting from the first slash."
+          ]
+        },
+        {
+          "id": "q_phish_3",
+          "title": "MFA Push Notification Flood",
+          "titleHinglish": "Raat ko 3 Baje MFA Notification Flood",
+          "microTopic": "MFA Fatigue (Push Bombing) Attacks",
+          "scenario": "At 3:15 AM, a systems engineer receives 42 consecutive push notifications on Microsoft Authenticator: \"Approve sign-in to Azure Portal?\".",
+          "scenarioHinglish": "Raat ko 3:15 baje ek engineer ko 42 notifications aane lage: \"Approve sign-in?\".",
+          "evidenceType": "logs",
+          "evidence": "03:14:55 AuthReq [User: admin_dev] [IP: 185.220.101.5] [Location: St. Petersburg, RU]\n03:14:58 AuthReq [User: admin_dev] [Repeated x12]\n03:15:10 PushResponse: PENDING (User device vibrating continuously)\n03:15:22 WhatsApp Msg: \"IT Helpdesk: Please hit Approve on your authenticator to stop the test.\"",
+          "options": [
+            {
+              "text": "Press \"Approve\" so the notifications stop vibrating, then change your password in the morning.",
+              "textHinglish": "\"Approve\" daba do taaki phone bajna band ho, subah password badal lena."
+            },
+            {
+              "text": "Press \"Deny\", report fraud immediately to SOC, and enable Number Matching or FIDO2 Passkeys.",
+              "textHinglish": "\"Deny\" dabao, SOC ko fraud report karo, aur Number Matching ya FIDO2 passkeys enable karo."
+            },
+            {
+              "text": "Airplane mode the phone; the session will securely self-terminate on the server within 24 hours.",
+              "textHinglish": "Phone ko airplane mode par daal do, 24 ghante mein session khatam ho jayega."
+            },
+            {
+              "text": "Reply to the WhatsApp message with your current password to verify your identity to IT.",
+              "textHinglish": "WhatsApp message par apna password bhej do taaki IT verify kar sake."
+            }
+          ],
+          "correctIndex": 1,
+          "el10": "An attacker already guessed your password and is ringing your doorbell 100 times hoping you get tired and open the door. Never open the door!",
+          "el10Hinglish": "Chor ke paas tumhare ghar ki chabi (password) aa chuki hai aur wo raat bhar doorbell baja raha hai taaki tum tang aakar darwaza khol do. Darwaza bilkul mat kholo!",
+          "soWhat": "MFA Fatigue was the exact attack vector behind the Uber, Cisco, and Lapsus$ corporate breaches.",
+          "remediationQuery": "mfa fatigue attack prevention number matching",
+          "videoId": "7a0v24w_ZqI",
+          "videoTitle": "MFA Fatigue: How Hackers Bypass Multi-Factor Authentication",
+          "cheatSheet": [
+            "Simple push notifications (Approve/Deny) are vulnerable to fatigue attacks.",
+            "Number matching forces the user to type the 2-digit code displayed on the login screen.",
+            "FIDO2 / WebAuthn hardware tokens are immune to push fatigue and phishing."
+          ]
+        },
+        {
+          "id": "q_phish_5",
+          "title": "Reverse-Proxy Man-in-the-Middle (Evilginx)",
+          "titleHinglish": "Evilginx Reverse Proxy Attack",
+          "microTopic": "Session Cookie Hijacking via Reverse Proxy",
+          "scenario": "A user successfully logs in, types an SMS OTP code, and enters the dashboard. 2 minutes later, an attacker logs into their account without needing the password or the OTP.",
+          "scenarioHinglish": "User ne login kiya, SMS OTP daala. 2 minute baad attacker bina password aur bina OTP ke user ke account mein ghus gaya.",
+          "evidenceType": "logs",
+          "evidence": "Attacker Proxy Server (Evilginx2):\n[Captured Credentials] User: dev@victim.org | Pass: CorrectHorseBattery#99\n[Captured MFA Token] OTP: 829104 (Consumed by real Google Server)\n[Captured Session Cookie] Name: OSID | Value: AIzaSyD... | Expiry: +30 days\nStatus: Attacker injected session cookie into local browser. Session Authenticated.",
+          "options": [
+            {
+              "text": "The attacker cracked the user’s master password hash using rainbow tables.",
+              "textHinglish": "Attacker ne password hash ko rainbow table se crack kar liya."
+            },
+            {
+              "text": "The attacker hosted a transparent proxy that forwarded requests to the real server and captured the authenticated session cookie.",
+              "textHinglish": "Attacker ne beech mein proxy baithaya, asli server ko data forward kiya, aur login hote hi authenticated session cookie chura li."
+            },
+            {
+              "text": "The user’s mobile cell tower was cloned via a Stingray IMSI catcher.",
+              "textHinglish": "User ka SIM card clone ho gaya tha."
+            },
+            {
+              "text": "The SMS OTP code was reused 10 times due to weak random number generation.",
+              "textHinglish": "SMS OTP bar-bar use ho gaya kyunki system weak tha."
+            }
+          ],
+          "correctIndex": 1,
+          "el10": "Imagine ordering food through a fake waiter who orders from the real chef for you, but steals your receipt so he can claim all your food later.",
+          "el10Hinglish": "Socho tum hotel mein baithe ho aur ek fake waiter tumhara order asli chef tak le gaya, lekin bill aur receipt apne paas rakh li taaki wo tumhara khana chura sake.",
+          "soWhat": "Traditional SMS and app-based OTPs do not stop reverse proxy phishing. Only FIDO2 / WebAuthn cryptographic origin binding defeats this.",
+          "remediationQuery": "evilginx reverse proxy phishing fido2 passkeys",
+          "videoId": "pP8p6uJmGZg",
+          "videoTitle": "How Hackers Steal Session Cookies with Reverse Proxies",
+          "cheatSheet": [
+            "SMS and TOTP codes are vulnerable to real-time proxy interception.",
+            "FIDO2/WebAuthn binds authentication cryptographically to the exact browser URL.",
+            "Protect session cookies with HttpOnly, Secure, and SameSite=Strict attributes."
+          ]
+        }
+      ],
+      "timestamp": "2026-09-22T07:40:18.430Z"
+    }
+  ],
   "squadNotes": [
     {
       "id": "sn_1790062110753",

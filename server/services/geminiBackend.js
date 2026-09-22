@@ -26,8 +26,8 @@ try {
 
 export class GeminiBackendService {
   constructor() {
-    this.apiKey = process.env.VITE_GEMINI_API_KEY || process.env.GEMINI_API_KEY || '';
-    this.model = process.env.VITE_GEMINI_MODEL || 'gemini-2.5-flash';
+    this.apiKey = process.env.GEMINI_API_KEY || process.env.VITE_GEMINI_API_KEY || '';
+    this.model = process.env.GEMINI_MODEL || process.env.VITE_GEMINI_MODEL || 'gemini-2.5-flash';
   }
 
   hasApiKey() {
