@@ -242,21 +242,10 @@ const server = http.createServer(async (req, res) => {
     if (pathname === '/api/squads/notes' && method === 'POST') {
       const userId = getUserIdFromReq(req);
       const body = await parseJSONBody(req);
-      let authorName = body.author || 'Agent_Operative';
-      let squadName = body.squad || 'ZeroDay Hunters';
-
-      if (userId) {
-        const currentUser = db.getUserById(userId);
-        if (currentUser) {
-          authorName = currentUser.callSign || currentUser.username;
-          squadName = currentUser.squad || squadName;
-        }
-      }
-
       const note = db.addSquadNote({
-        author: authorName,
+        author: body.author || 'Agent_Operative',
         authorId: userId || 'anon',
-        squad: squadName,
+        squad: body.squad || 'ZeroDay Hunters',
         topic: body.topic,
         content: body.content,
         contentHinglish: body.contentHinglish
@@ -266,13 +255,10 @@ const server = http.createServer(async (req, res) => {
 
     // 12. SQUADS: Upvote Note
     if (pathname.startsWith('/api/squads/notes/') && pathname.endsWith('/upvote') && method === 'POST') {
-      const userId = getUserIdFromReq(req);
-      if (!userId) {
-        return sendError(res, 401, 'Authentication required to upvote notes.');
-      }
       const parts = pathname.split('/');
       const noteId = parts[parts.length - 2];
-      const updated = db.upvoteSquadNote(noteId, userId);
+      const userId = getUserIdFromReq(req);
+      const updated = db.upvoteSquadNote(noteId, userId || 'anon');
       return sendJSON(res, 200, { note: updated });
     }
 
@@ -290,20 +276,18 @@ const server = http.createServer(async (req, res) => {
   // ==========================================
   // STATIC FILE SERVING FOR CLIENT SPA
   // ==========================================
-  const normalizedPath = path.normalize(pathname).replace(/^(\.\.[\/\\])+/, '');
-  let filePath = path.join(process.cwd(), normalizedPath === '/' || normalizedPath === '\\' ? 'index.html' : normalizedPath);
+  let filePath = path.join(process.cwd(), pathname === '/' ? 'index.html' : pathname);
 
-  // Security check: strictly enforce path containment inside current directory
-  const rootDir = process.cwd();
-  if (!filePath.startsWith(rootDir)) {
-    res.writeHead(403, { 'X-Content-Type-Options': 'nosniff' });
+  // Security check: keep inside workspace
+  if (!filePath.startsWith(process.cwd())) {
+    res.writeHead(403);
     return res.end('Forbidden');
   }
 
   fs.stat(filePath, (err, stats) => {
     if (err || !stats.isFile()) {
       // SPA Fallback: serve index.html
-      filePath = path.join(rootDir, 'index.html');
+      filePath = path.join(process.cwd(), 'index.html');
     }
 
     const ext = path.extname(filePath).toLowerCase();
@@ -311,20 +295,15 @@ const server = http.createServer(async (req, res) => {
 
     fs.readFile(filePath, (readErr, content) => {
       if (readErr) {
-        res.writeHead(404, { 'X-Content-Type-Options': 'nosniff' });
+        res.writeHead(404);
         return res.end('Not Found');
       }
-      res.writeHead(200, {
-        'Content-Type': contentType,
-        'X-Content-Type-Options': 'nosniff',
-        'X-Frame-Options': 'DENY',
-        'Referrer-Policy': 'strict-origin-when-cross-origin'
-      });
+      res.writeHead(200, { 'Content-Type': contentType });
       res.end(content);
     });
   });
 });
 
-server.listen(PORT, () => {
+server.listen(PORT, '0.0.0.0', () => {
   console.log(`⚡ Kairos Full-Stack Server running at http://localhost:${PORT}`);
 });

@@ -25,6 +25,9 @@ class KairosApp {
   }
 
   init() {
+    this.currentView = null;
+    this.lastLang = null;
+
     // Setup persistent widgets
     setupELI5Tutor(this.tutorRoot);
     setupPitchDeckAndSettings(this.modalRoot);
@@ -33,22 +36,38 @@ class KairosApp {
     // Initial render
     this.render();
 
-    // Subscribe to state changes
+    // Subscribe to state changes without destroying active video player in learning-lab
     store.subscribe(() => {
-      this.render();
+      const state = store.getState();
+      const needsFullRender = 
+        this.currentView !== state.currentView || 
+        this.lastLang !== state.language ||
+        state.currentView === 'diagnostic' ||
+        state.currentView === 'mastery-arena' ||
+        state.currentView === 'social-dashboard';
+
+      if (needsFullRender) {
+        this.render();
+      } else {
+        renderNavbar(this.headerRoot);
+        this.renderFooterPresence();
+      }
     });
 
-    // Setup simulated live presence stream timer (pings every 8-15 seconds)
+    // Setup simulated live presence stream timer
     this.startPresenceSimulator();
   }
 
   render() {
+    const state = store.getState();
+    const currentView = state.currentView;
+    this.currentView = currentView;
+    this.lastLang = state.language;
+
     // Render top Navbar
     renderNavbar(this.headerRoot);
 
     // Render active view in main content area
-    const state = store.getState();
-    const currentView = state.currentView;
 
     switch (currentView) {
       case 'topic-selector':

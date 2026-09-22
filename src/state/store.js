@@ -19,11 +19,12 @@ class StateStore {
       // User Profile (Synchronized with Backend DB)
       user: {
         id: savedState?.user?.id || 'guest_user',
-        username: savedState?.user?.username || 'Agent_Specter',
-        name: savedState?.user?.callSign || savedState?.user?.username || 'Agent_Specter',
+        username: savedState?.user?.username || 'Guest_Operative',
+        name: savedState?.user?.callSign || savedState?.user?.username || 'Guest Operative',
+        callSign: savedState?.user?.callSign || '',
         level: savedState?.user?.level || 1,
-        xp: savedState?.user?.xp || 350,
-        streak: savedState?.user?.streak || 5,
+        xp: savedState?.user?.xp || 0,
+        streak: savedState?.user?.streak || 1,
         squad: savedState?.user?.squad || 'ZeroDay Hunters',
         soundEnabled: true,
         isAuthenticated: Boolean(savedState?.user?.id && savedState.user.id !== 'guest_user')
@@ -39,6 +40,7 @@ class StateStore {
       activeDomain: CYBER_DOMAINS[0],
       currentTier: 1, // 1: Awareness, 2: Mechanics, 3: Mastery
       unlockedTiers: {
+        'ad-kerberoasting': 1,
         'phishing-social-eng': 1,
         'malware-defense': 1,
         'network-exploitation': 1,
@@ -128,6 +130,8 @@ class StateStore {
       const me = await api.getMe();
       if (me) {
         this.setUser(me);
+      } else if (this.state.user.isAuthenticated) {
+        await this.logout();
       }
     } catch {
       // Continue in guest mode
@@ -175,6 +179,7 @@ class StateStore {
       ...this.state.user,
       ...user,
       name: user.callSign || user.username || 'Agent_Operative',
+      callSign: user.callSign || user.username || 'Agent_Operative',
       isAuthenticated: true
     };
     if (user.unlockedTiers) {
@@ -184,20 +189,47 @@ class StateStore {
     this.notify();
   }
 
-  logout() {
-    api.logout();
+  async logout() {
+    await api.logout();
     this.state.user = {
       id: 'guest_user',
-      username: 'Guest_Agent',
-      name: 'Guest_Agent',
+      username: 'Guest_Operative',
+      name: 'Guest Operative',
+      callSign: '',
       level: 1,
-      xp: 100,
+      xp: 0,
       streak: 1,
       squad: 'ZeroDay Hunters',
-      soundEnabled: true,
+      soundEnabled: this.state.user.soundEnabled ?? true,
       isAuthenticated: false
     };
     this.notify();
+  }
+
+  async updateUserProfile(updates) {
+    if (this.state.user.isAuthenticated) {
+      try {
+        const updated = await api.updateProfile(updates);
+        this.setUser(updated);
+        return updated;
+      } catch (e) {
+        console.warn('Update profile failed:', e);
+        throw e;
+      }
+    } else {
+      if (updates.callSign) {
+        this.state.user.name = updates.callSign;
+        this.state.user.callSign = updates.callSign;
+      }
+      if (updates.squad) {
+        this.state.user.squad = updates.squad;
+      }
+      if (updates.targetTrack) {
+        this.state.user.targetTrack = updates.targetTrack;
+      }
+      this.notify();
+      return this.state.user;
+    }
   }
 
   setView(viewName) {

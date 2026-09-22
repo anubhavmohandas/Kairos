@@ -67,8 +67,10 @@ export function renderMasteryArena(container) {
 
     container.innerHTML = `
       <div class="glass-card" style="max-width: 720px; margin: 2rem auto; padding: 2.5rem; text-align: center;">
-        <div style="font-size: 3.5rem; margin-bottom: 0.5rem;">
-          ${isPassed ? '🏆' : '⚠️'}
+        <div style="display: flex; justify-content: center; margin-bottom: 1rem;">
+          ${isPassed 
+            ? '<svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.2"><path d="M6 9H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h2"></path><path d="M18 9h2a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-2"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.45 1-1 1H7v4h10v-4h-2c-.55 0-1-.45-1-1v-2.34"></path><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"></path></svg>' 
+            : '<svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#e11d48" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>'}
         </div>
 
         <h2 style="font-size: 2.2rem; margin-bottom: 0.5rem;">
@@ -94,17 +96,17 @@ export function renderMasteryArena(container) {
         <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
           ${isPassed ? `
             <button id="btn-mastery-next-tier" class="btn btn-cyan">
-              <span>🚀 ${isHinglish ? 'Agla Tier Unlock Karo' : `Unlock Tier ${Math.min(3, currentTier + 1)}`}</span>
+              <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path></svg> ${isHinglish ? 'Agla Tier Unlock Karo' : `Unlock Tier ${Math.min(3, currentTier + 1)}`}</span>
             </button>
             <button id="btn-mastery-to-social" class="btn btn-violet">
-              <span>⚔️ ${isHinglish ? '1v1 Arena Mein Challenge Karo' : 'Enter 1v1 Duel Arena'}</span>
+              <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="14.5 17.5 3 6 3 3 6 3 17.5 14.5"></polyline><line x1="13" y1="19" x2="19" y2="13"></line></svg> ${isHinglish ? '1v1 Arena Mein Challenge Karo' : 'Enter 1v1 Duel Arena'}</span>
             </button>
           ` : `
             <button id="btn-mastery-remediate" class="btn btn-cyan">
-              <span>🔄 ${isHinglish ? 'Surgical Learning Lab Kholo' : 'Review in Learning Lab'}</span>
+              <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg> ${isHinglish ? 'Surgical Learning Lab Kholo' : 'Review in Learning Lab'}</span>
             </button>
             <button id="btn-mastery-retry" class="btn btn-ghost">
-              <span>🔁 ${isHinglish ? 'Test Dobara Dein' : 'Retry Mastery Exam'}</span>
+              <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg> ${isHinglish ? 'Test Dobara Dein' : 'Retry Mastery Exam'}</span>
             </button>
           `}
         </div>
@@ -233,7 +235,7 @@ export function renderMasteryArena(container) {
 
       if (masteryState.passed) {
         soundFX.playFanfare();
-        store.broadcastPresence(`🏆 ${store.state.user.name} PASSED Tier 1 Mastery in ${domain.title}!`, 'unlock');
+        store.broadcastPresence(`<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h2"></path><path d="M18 9h2a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-2"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.45 1-1 1H7v4h10v-4h-2c-.55 0-1-.45-1-1v-2.34"></path><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"></path></svg> ${store.state.user.name} PASSED Tier 1 Mastery in ${domain.title}!`, 'unlock');
       } else {
         soundFX.playAlert();
       }

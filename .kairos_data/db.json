@@ -16,7 +16,8 @@
         "malware-defense": 1,
         "network-exploitation": 1,
         "identity-token": 1,
-        "cloud-security": 1
+        "cloud-security": 1,
+        "ad-kerberoasting": 1
       },
       "createdAt": "2026-09-22T07:28:30.752Z"
     },
@@ -36,7 +37,8 @@
         "malware-defense": 1,
         "network-exploitation": 1,
         "identity-token": 1,
-        "cloud-security": 1
+        "cloud-security": 1,
+        "ad-kerberoasting": 1
       },
       "createdAt": "2026-09-22T07:34:27.105Z"
     },
@@ -56,12 +58,505 @@
         "malware-defense": 1,
         "network-exploitation": 1,
         "identity-token": 1,
-        "cloud-security": 1
+        "cloud-security": 1,
+        "ad-kerberoasting": 1
       },
       "createdAt": "2026-09-22T07:36:21.501Z"
+    },
+    {
+      "id": "usr_1790065294067_7b2lj",
+      "username": "vinit",
+      "email": "vinit@gmail.com",
+      "passwordHash": "ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f",
+      "callSign": "vinit",
+      "squad": "RedTeam Alpha",
+      "targetTrack": "phishing-social-eng",
+      "level": 1,
+      "xp": 250,
+      "streak": 1,
+      "unlockedTiers": {
+        "phishing-social-eng": 1,
+        "malware-defense": 1,
+        "network-exploitation": 1,
+        "identity-token": 1,
+        "cloud-security": 1,
+        "ad-kerberoasting": 1
+      },
+      "createdAt": "2026-09-22T08:21:34.067Z"
+    },
+    {
+      "id": "usr_1790072273242_lvvj1",
+      "username": "test_agent_1790072273229",
+      "email": "test_agent_1790072273229@kairos.corp",
+      "passwordSalt": "fa61558c795e251d3722ddae8cf76992",
+      "passwordHash": "2f427d6e0294283417ac21a101d3c609f4aeb6558f7cac29e243d12538d21ee62bde37919e26cfd121081f0b10e04c18fa00cfcb300d6182a48d87ee6590ef54",
+      "callSign": "Viper_Specter",
+      "squad": "CyberSentinels",
+      "targetTrack": "ad-kerberoasting",
+      "level": 2,
+      "xp": 500,
+      "streak": 1,
+      "unlockedTiers": {
+        "ad-kerberoasting": 1,
+        "phishing-social-eng": 1,
+        "malware-defense": 1,
+        "network-exploitation": 1,
+        "identity-token": 1,
+        "cloud-security": 1
+      },
+      "createdAt": "2026-09-22T10:17:53.242Z"
+    },
+    {
+      "id": "usr_1790072434384_65po0",
+      "username": "op_1790072434343",
+      "email": "op_1790072434343@kairos.net",
+      "passwordSalt": "658af03d3528adde03a7829b3ecc8032",
+      "passwordHash": "a6ac779be938b5c15c69bbd950bdf918f1ff91a4c055b2868eda2b631cc3a95683adba0c1813c0e7eaed42de5d87ff2e90a33ffb7c6ed4663e13851c6cac0592",
+      "callSign": "Vortex_Hunter",
+      "squad": "RedTeam Alpha",
+      "targetTrack": "ad-kerberoasting",
+      "level": 3,
+      "xp": 950,
+      "streak": 1,
+      "unlockedTiers": {
+        "ad-kerberoasting": 1,
+        "phishing-social-eng": 1,
+        "malware-defense": 1,
+        "network-exploitation": 1,
+        "identity-token": 1,
+        "cloud-security": 1
+      },
+      "createdAt": "2026-09-22T10:20:34.384Z"
+    },
+    {
+      "id": "usr_1790072453931_dt3n6",
+      "username": "op_1790072453899",
+      "email": "op_1790072453899@kairos.net",
+      "passwordSalt": "3e72cda964f3fc1b523da6c287747e64",
+      "passwordHash": "a3b30985d4de083572122179ca6e7e41fc48de0cd5afbe6e12bef767e03971de738430c60b433050cf8dc066eb91bdce1bedc4bfcfb1c83e6cdc31cbcb649e0f",
+      "callSign": "Vortex_Hunter",
+      "squad": "RedTeam Alpha",
+      "targetTrack": "ad-kerberoasting",
+      "level": 3,
+      "xp": 950,
+      "streak": 1,
+      "unlockedTiers": {
+        "ad-kerberoasting": 1,
+        "phishing-social-eng": 1,
+        "malware-defense": 1,
+        "network-exploitation": 1,
+        "identity-token": 1,
+        "cloud-security": 1
+      },
+      "createdAt": "2026-09-22T10:20:53.931Z"
+    },
+    {
+      "id": "usr_1790072454095_t3c1o",
+      "username": "op2_1790072454076",
+      "email": "",
+      "passwordSalt": "3c852e2d8d64dd5a28a00e46035ec952",
+      "passwordHash": "094e18e9a6a4405e32ed28320de8016cc9fa9c2020de5046b4ca352b1ae65146df762e5afd87847b21144305ccda7dcf3f6f3c106e6684446ca033b07d6728ed",
+      "callSign": "Agent_op2_1790072454076",
+      "squad": "ZeroDay Hunters",
+      "targetTrack": "ad-kerberoasting",
+      "level": 1,
+      "xp": 250,
+      "streak": 1,
+      "unlockedTiers": {
+        "ad-kerberoasting": 1,
+        "phishing-social-eng": 1,
+        "malware-defense": 1,
+        "network-exploitation": 1,
+        "identity-token": 1,
+        "cloud-security": 1
+      },
+      "createdAt": "2026-09-22T10:20:54.095Z"
+    },
+    {
+      "id": "usr_1790072762293_dwpvr",
+      "username": "v",
+      "email": "v@gmail.com",
+      "passwordSalt": "6365f2d79376e6a961b366e3f7c6653a",
+      "passwordHash": "63443e7bffd65d478baf3601aa794d686fd118d76e103f592ff4e0d12d4214318decd9a06bd798a4e68c77d5b4576fd6c37ec329871a3e2215b9724b38ec55c3",
+      "callSign": "v",
+      "squad": "ZeroDay Hunters",
+      "targetTrack": "ad-kerberoasting",
+      "level": 1,
+      "xp": 350,
+      "streak": 1,
+      "unlockedTiers": {
+        "ad-kerberoasting": 1,
+        "phishing-social-eng": 1,
+        "malware-defense": 1,
+        "network-exploitation": 1,
+        "identity-token": 1,
+        "cloud-security": 1
+      },
+      "createdAt": "2026-09-22T10:26:02.293Z"
+    }
+  ],
+  "sessions": [
+    {
+      "token": "tok_6382af50e561b0a7c55abbb5970d68d32a06f16e1e3fb812",
+      "userId": "usr_1790072434384_65po0",
+      "createdAt": "2026-09-22T10:20:34.525Z",
+      "expiresAt": "2026-09-29T10:20:34.525Z"
+    },
+    {
+      "token": "tok_a5160fb4ac187903ec51e0ec919b723efe49bf38fa1d752d",
+      "userId": "usr_1790072453931_dt3n6",
+      "createdAt": "2026-09-22T10:20:54.055Z",
+      "expiresAt": "2026-09-29T10:20:54.055Z"
+    },
+    {
+      "token": "tok_f691c9e165d0c4543a9240927006259ec93f4286b7b98419",
+      "userId": "usr_1790072454095_t3c1o",
+      "createdAt": "2026-09-22T10:20:54.098Z",
+      "expiresAt": "2026-09-29T10:20:54.098Z"
+    },
+    {
+      "token": "tok_fc018ebd0b90fdcb9b133a0a298607f0399929326ee37bf2",
+      "userId": "usr_1790072762293_dwpvr",
+      "createdAt": "2026-09-22T10:26:02.315Z",
+      "expiresAt": "2026-09-29T10:26:02.315Z"
     }
   ],
   "diagnostics": [
+    {
+      "id": "diag_1790072806006",
+      "userId": "usr_1790072762293_dwpvr",
+      "domain": "Active Directory Kerberoasting Defense",
+      "score": 100,
+      "missedCount": 0,
+      "missedQuestions": [],
+      "timestamp": "2026-09-22T10:26:46.006Z"
+    },
+    {
+      "id": "diag_1790069982208",
+      "userId": "guest",
+      "domain": "Active Directory Kerberoasting Defense",
+      "score": 20,
+      "missedCount": 4,
+      "missedQuestions": [
+        {
+          "id": "q_ad_1",
+          "title": "SPN Enumeration: User vs Computer Account Discrepancy",
+          "titleHinglish": "SPN Discovery: User Account vs Computer Account Target",
+          "microTopic": "SPN Enumeration & Service Account Discovery",
+          "scenario": "An attacker with standard low-privileged domain credentials executes \"setspn.exe -T medtech.local -Q */*\" to discover Kerberos Service Principal Names. They review the output for \"svc_sql_prod\" versus \"DC01$\". Why do attackers specifically target \"svc_sql_prod\" for Kerberoasting rather than \"DC01$\"?",
+          "scenarioHinglish": "Ek low-privileged domain user ne network par registered SPNs scan kiye. Usse do accounts mile: \"svc_sql_prod\" aur computer account \"DC01$\". Attacker ne specifically \"svc_sql_prod\" ko Kerberoasting ke liye kyun chuna?",
+          "evidenceType": "command",
+          "evidence": "PS C:\\Users\\intern.corp> setspn.exe -T medtech.local -Q */*\n\nCN=SQL-Production-Service,OU=ServiceAccounts,DC=medtech,DC=local\n  UserAccountControl: NORMAL_ACCOUNT (0x200)\n  sAMAccountName: svc_sql_prod\n  ServicePrincipalNames:\n    MSSQLSvc/db01.medtech.local:1433\n    MSSQLSvc/db01:1433\n\nCN=DC01,OU=Domain Controllers,DC=medtech,DC=local\n  UserAccountControl: SERVER_TRUST_ACCOUNT (0x2000)\n  sAMAccountName: DC01$\n  ServicePrincipalNames:\n    HOST/dc01.medtech.local",
+          "options": [
+            {
+              "text": "User service accounts (svc_sql_prod) typically use human-created static passwords crackable offline, whereas machine accounts (ending in $) have 120-character random passwords auto-rotated by Active Directory every 30 days.",
+              "textHinglish": "User accounts (svc_sql_prod) ke passwords insaan banate hain jo offline crack ho sakte hain, jabki computer accounts ($ wale) ke passwords 120-character random hote hain jo AD khud rotate karta hai."
+            },
+            {
+              "text": "Computer accounts cannot issue Kerberos TGS tickets across UDP port 88.",
+              "textHinglish": "Computer accounts UDP port 88 par Kerberos tickets issue nahi kar sakte."
+            },
+            {
+              "text": "Active Directory automatically encrypts user accounts with AES-256 but leaves computer accounts unencrypted in cleartext.",
+              "textHinglish": "Active Directory user accounts ko AES se encrypt karta hai par computer accounts ko unencrypted chhodta hai."
+            },
+            {
+              "text": "Only accounts with \"MSSQLSvc\" SPNs can execute remote code via xp_cmdshell.",
+              "textHinglish": "Sirf MSSQLSvc wale accounts hi xp_cmdshell se attack kar sakte hain."
+            }
+          ],
+          "correctIndex": 0,
+          "el10": "Think of computer accounts ($) like high-tech bank vaults with 120-digit combination codes that change every month. But user service accounts are like cheap bicycle locks chosen by a busy human who picked \"Summer2024!\" because they didn't want to forget it!",
+          "el10Hinglish": "Computer accounts ($ wale) bank ke digital lockers jaise hain jinka password har 30 din mein computer khud 120 characters ka bana deta hai. Lekin user service accounts ka password insaan rakhte hain jaise \"Password@123\", jise ghar baith kar aasani se toda ja sakta hai!",
+          "soWhat": "Cracking svc_sql_prod reveals the cleartext credentials for database infrastructure, enabling threat actors to dump sensitive records and execute xp_cmdshell for local SYSTEM privilege escalation.",
+          "remediationQuery": "kerberoasting spn enumeration setspn active directory",
+          "videoId": "-3MxoxdzFNI",
+          "videoTitle": "Attacking Active Directory - Kerberoasting Deep Dive",
+          "cheatSheet": [
+            "Always filter SPN discovery to user accounts: (samAccountType=805306368) instead of computer accounts (805306369).",
+            "Any domain-authenticated user can query all SPNs in the entire forest via standard LDAP without elevated privileges.",
+            "Service accounts should never be assigned Domain Admin or Local Administrator rights."
+          ]
+        },
+        {
+          "id": "q_ad_2",
+          "title": "The Kerberos Cipher Downgrade (RC4 vs AES)",
+          "titleHinglish": "Kerberos Cipher Downgrade (etype 23 RC4 vs etype 18 AES)",
+          "microTopic": "Kerberos Cipher Downgrade (RC4-HMAC vs AES-256)",
+          "scenario": "An adversary uses Rubeus on a workstation to request a Kerberos service ticket for MSSQLSvc/db01.medtech.local:1433. Look at the console execution output. Why did the attacker explicitly include \"/rc4opsec\" to force encryption type 0x17 (rc4-hmac) instead of accepting the modern default 0x12 (aes256-cts-hmac-sha1-96)?",
+          "scenarioHinglish": "Attacker ne Rubeus tool chalakar Kerberos ticket request kiya. Command mein unhone \"/rc4opsec\" use karke encryption type \"0x17 (RC4)\" kyun force kiya jabki modern Windows AES-256 use karta hai?",
+          "evidenceType": "command",
+          "evidence": "PS C:\\Tools> .\\Rubeus.exe kerberoast /spn:\"MSSQLSvc/db01.medtech.local:1433\" /format:hashcat /rc4opsec\n\n[*] Action: Kerberoasting\n[*] Target SPN: MSSQLSvc/db01.medtech.local:1433\n[*] Target User: svc_sql_prod (UserAccountControl: NORMAL_ACCOUNT)\n[*] Requesting TGS with Encryption Type: 0x17 (rc4-hmac)\n[*] Ticket Options: 0x40810000 (Forwardable, Renewable, Canonicalize)\n\n[+] Hashcat Format Hash Extracted:\n$krb5tgs$23$*svc_sql_prod$MEDTECH.LOCAL$MSSQLSvc/db01.medtech.local:1433*$0a7b4f3e9c12a87d65b1248192a014bc...[TRUNCATED]...88b2",
+          "options": [
+            {
+              "text": "RC4 encryption prevents the Domain Controller from recording Event ID 4769 in the Security event log.",
+              "textHinglish": "RC4 use karne se Domain Controller par koi log record nahi hota."
+            },
+            {
+              "text": "RC4-HMAC derives its key directly from the NTLM hash (MD4), allowing GPUs (Hashcat mode 13100) to crack billions of passwords/sec compared to CPU-heavy AES-256 key derivation (mode 19700).",
+              "textHinglish": "RC4-HMAC ka key NTLM hash (MD4) par chalta hai jo GPU par arbon guesses/sec crack ho sakta hai, jabki AES-256 crack karna 100x zyada slow hota hai."
+            },
+            {
+              "text": "AES-256 tickets require physical smart cards inserted into the client machine to download.",
+              "textHinglish": "AES-256 tickets download karne ke liye physical smart card zaroori hota hai."
+            },
+            {
+              "text": "The Domain Controller rejects all AES-256 TGS requests originating from non-admin workstations.",
+              "textHinglish": "Domain Controller standard workstations se AES requests ko reject kar deta hai."
+            }
+          ],
+          "correctIndex": 1,
+          "el10": "RC4 is like asking the clerk to lock your box with a cheap 3-number luggage padlock instead of a heavy steel safe. You can pick that cheap lock in seconds using a computer, whereas the steel safe (AES) would take decades to drill through!",
+          "el10Hinglish": "RC4 ko ek saste suitcase ke lock jaisa samjho jise aap 10 second mein pin se khol sakte ho. AES-256 ek bhari tijori jaisa hai jise kholne mein saalon lag jayenge. Isliye attacker janbujhkar RC4 maangte hain!",
+          "soWhat": "By forcing an RC4 downgrade, attackers can crack 8-12 character complex service account passwords in under a few hours using consumer-grade graphics cards (RTX 4090).",
+          "remediationQuery": "disable rc4 kerberos active directory aes enforcement",
+          "videoId": "-3MxoxdzFNI",
+          "videoTitle": "Attacking Active Directory - Kerberoasting Deep Dive",
+          "cheatSheet": [
+            "Enforce AES-128 and AES-256 Kerberos encryption in domain group policies (msDS-SupportedEncryptionTypes = 0x18).",
+            "Disable DES and RC4 cipher suites on both client machines and domain controllers.",
+            "Monitor for Event ID 4769 where Ticket Encryption Type is 0x17 from modern Windows 10/11 endpoints."
+          ]
+        },
+        {
+          "id": "q_ad_3",
+          "title": "Offline Hash Extraction & Lockout Policy Bypass",
+          "titleHinglish": "Offline Cracking aur Account Lockout Bypass",
+          "microTopic": "Offline Ticket Decryption & Lockout Bypass",
+          "scenario": "A security operations center (SOC) maintains a strict Account Lockout Policy of 5 invalid attempts. An adversary extracts the TGS ticket for \"svc_sql_prod\" and runs Hashcat on an external GPU rig, submitting 450,000,000 dictionary guesses. Why does this brute-force attack trigger ZERO account lockouts and ZERO failed logon events (Event 4625)?",
+          "scenarioHinglish": "Company ke Active Directory mein rule hai: \"5 galat password ke baad account lock ho jayega\". Attacker ne hashcat se 45 crore passwords try kiye, fir bhi account lock kyun nahi hua aur Event 4625 kyun nahi aaya?",
+          "evidenceType": "logs",
+          "evidence": "# Host: Attacker Kali Linux Rig (Air-gapped from corporate network)\n$ hashcat -m 13100 -a 0 svc_sql.hash /usr/share/wordlists/rockyou.txt -r rules/best64.rule\n\nSession..........: hashcat\nStatus...........: Running\nHash.Mode........: 13100 (Kerberos 5, etype 23, TGS-REP)\nSpeed.#1.........: 1,842.3 MH/s (1.84 Billion hashes/second)\nProgress.........: 450,000,000 / 14,344,392,000 (3.14%)\nTarget Service...: MSSQLSvc/db01.medtech.local:1433\nDomain Controller: ZERO packets sent during session",
+          "options": [
+            {
+              "text": "Active Directory lockout thresholds only apply during working business hours (9 AM - 6 PM).",
+              "textHinglish": "Active Directory ka lockout rule sirf office ke time par kaam karta hai."
+            },
+            {
+              "text": "The Kerberos TGS ticket was already delivered to the attacker; the cryptographic decryption happens 100% offline on the attacker's GPU without ever communicating with the Domain Controller.",
+              "textHinglish": "Ticket pehle hi attacker ke computer par aa chuka hai; password todne ka sara kaam offline GPU par chal raha hai, Domain Controller se koi contact nahi ho raha."
+            },
+            {
+              "text": "Hashcat automatically sends LDAP heartbeat packets that continually reset the BadPasswordCount attribute to zero.",
+              "textHinglish": "Hashcat automatic packets bhej kar password fail count ko zero kar deta hai."
+            },
+            {
+              "text": "Active Directory exempts all accounts with \"svc_\" prefixes from domain lockout policies by default.",
+              "textHinglish": "svc_ wale accounts par Active Directory mein lockout policy lagti hi nahi hai."
+            }
+          ],
+          "correctIndex": 1,
+          "el10": "It's like going to the post office, asking for a sealed mystery package, and taking it home. In your garage, you can try 10 million keys on the padlock. The post office has no clue you are trying keys because the package is in your house!",
+          "el10Hinglish": "Ye bilkul aisa hai ki aap post office se ek band locker apne ghar le aaye. Ab ghar ke andar baith kar aap 10 lakh nakli chabiyan lagao, post office ke guard ko pata bhi nahi chalega kyunki locker aapke kamre mein hai!",
+          "soWhat": "Because the attack is completely silent and offline, attackers can crack complex passwords over days, weeks, or months without alerting traditional endpoint protection or triggering lockout alarms.",
+          "remediationQuery": "kerberos offline cracking hashcat mode 13100 lockout bypass",
+          "videoId": "-3MxoxdzFNI",
+          "videoTitle": "Attacking Active Directory - Kerberoasting Deep Dive",
+          "cheatSheet": [
+            "Account Lockout policies only protect against online authentication attempts against the DC.",
+            "Only password length (25+ characters) or gMSA auto-generated 120-character keys make offline cracking mathematically unfeasible.",
+            "Kerberoasting is completely undetectable at the destination host—the attacker never connects to the target database server!"
+          ]
+        },
+        {
+          "id": "q_ad_4",
+          "title": "Hunting Event ID 4769: A Kerberos Service Ticket Was Requested",
+          "titleHinglish": "Windows Event ID 4769 SIEM Threat Hunting",
+          "microTopic": "SIEM Detection & Event ID 4769 Analysis",
+          "scenario": "A SOC threat hunter investigates a potential breach. They run a query in Microsoft Sentinel for Windows Event ID 4769 (\"A Kerberos service ticket was requested\"). Review the raw event payload. Which specific combination of telemetry attributes signals a high-confidence Kerberoasting attack?",
+          "scenarioHinglish": "SOC Analyst ne Splunk/Sentinel mein Event ID 4769 search kiya. Niche diye gaye log mein kaun se fields dekh kar saaf pata chalta hai ki ye normal kaam nahi balki Kerberoasting attack hai?",
+          "evidenceType": "logs",
+          "evidence": "LogName: Security\nSource: Microsoft-Windows-Security-Auditing\nEventID: 4769\nTaskCategory: Kerberos Service Ticket Operations\nComputer: DC01.medtech.local\n\nAccount Information:\n  Account Name:         jdoe@MEDTECH.LOCAL\n  Supplicant Address:   10.0.4.52:53120\n\nService Information:\n  Service Name:         svc_sql_prod\n  Service ID:           S-1-5-21-1928471928-192837492-1004\n\nNetwork Information:\n  Client Address:       ::ffff:10.0.4.52\n  Ticket Options:       0x40810000\n  Ticket Encryption:    0x17 (RC4-HMAC)\n  Status:               0x0 (Success)",
+          "options": [
+            {
+              "text": "Standard user (jdoe) requesting an RC4 (0x17) encrypted ticket for a user account (svc_sql_prod), coupled with no subsequent TCP 1433 connection to the database server from 10.0.4.52.",
+              "textHinglish": "Ek normal user (jdoe) user service account ke liye RC4 (0x17) ticket maang raha hai, aur ticket lene ke baad bhi database server (port 1433) se connect hi nahi karta!"
+            },
+            {
+              "text": "The Status code 0x0 indicates a failed Kerberos pre-authentication challenge.",
+              "textHinglish": "Status 0x0 ka matlab Kerberos pre-auth fail ho gaya."
+            },
+            {
+              "text": "The Client Address prefix \"::ffff:\" proves the attack originated from a Russian dark web proxy.",
+              "textHinglish": "\"::ffff:\" IPv6 prefix dark web proxy ko darshata hai."
+            },
+            {
+              "text": "Ticket Options \"0x40810000\" is a buffer overflow memory corruption exploit code.",
+              "textHinglish": "0x40810000 memory crash exploit code hai."
+            }
+          ],
+          "correctIndex": 0,
+          "el10": "Imagine someone ordering a pizza coupon at the front desk using a 30-year-old expired format (RC4), and then immediately walking out the door without ever going to the pizza counter to get food!",
+          "el10Hinglish": "Aisa socho ki kisi ne canteen counter par jakar 1990 ke zamane ka coupon (RC4) manga, lekin coupon lene ke baad khana lene canteen gaya hi nahi, seedha ghar chala gaya!",
+          "soWhat": "Identifying Event 4769 with 0x17 encryption allows SOC defenders to kill the compromised user session and rotate service account credentials BEFORE the offline hash is cracked.",
+          "remediationQuery": "detect kerberoasting event id 4769 splunk sentinel",
+          "videoId": "-3MxoxdzFNI",
+          "videoTitle": "Attacking Active Directory - Kerberoasting Deep Dive",
+          "cheatSheet": [
+            "Filter Event 4769 where Ticket Encryption Type is 0x17 and Service Name does NOT end in $ (computer account).",
+            "Correlate Event 4769 against NetFlow/Zeek logs: If no network traffic follows to the service host IP, suspect Kerberoasting.",
+            "Deploy \"Honey SPNs\" (fake service accounts with SPNs): Any Event 4769 for a Honey SPN generates an instant high-fidelity P1 alert."
+          ]
+        }
+      ],
+      "timestamp": "2026-09-22T09:39:42.208Z"
+    },
+    {
+      "id": "diag_1790065223291",
+      "userId": "guest",
+      "domain": "Phishing & Social Engineering",
+      "score": 60,
+      "missedCount": 2,
+      "missedQuestions": [
+        {
+          "id": "q_phish_3",
+          "title": "MFA Push Notification Flood",
+          "titleHinglish": "Raat ko 3 Baje MFA Notification Flood",
+          "microTopic": "MFA Fatigue (Push Bombing) Attacks",
+          "scenario": "At 3:15 AM, a systems engineer receives 42 consecutive push notifications on Microsoft Authenticator: \"Approve sign-in to Azure Portal?\".",
+          "scenarioHinglish": "Raat ko 3:15 baje ek engineer ko 42 notifications aane lage: \"Approve sign-in?\".",
+          "evidenceType": "logs",
+          "evidence": "03:14:55 AuthReq [User: admin_dev] [IP: 185.220.101.5] [Location: St. Petersburg, RU]\n03:14:58 AuthReq [User: admin_dev] [Repeated x12]\n03:15:10 PushResponse: PENDING (User device vibrating continuously)\n03:15:22 WhatsApp Msg: \"IT Helpdesk: Please hit Approve on your authenticator to stop the test.\"",
+          "options": [
+            {
+              "text": "Press \"Approve\" so the notifications stop vibrating, then change your password in the morning.",
+              "textHinglish": "\"Approve\" daba do taaki phone bajna band ho, subah password badal lena."
+            },
+            {
+              "text": "Press \"Deny\", report fraud immediately to SOC, and enable Number Matching or FIDO2 Passkeys.",
+              "textHinglish": "\"Deny\" dabao, SOC ko fraud report karo, aur Number Matching ya FIDO2 passkeys enable karo."
+            },
+            {
+              "text": "Airplane mode the phone; the session will securely self-terminate on the server within 24 hours.",
+              "textHinglish": "Phone ko airplane mode par daal do, 24 ghante mein session khatam ho jayega."
+            },
+            {
+              "text": "Reply to the WhatsApp message with your current password to verify your identity to IT.",
+              "textHinglish": "WhatsApp message par apna password bhej do taaki IT verify kar sake."
+            }
+          ],
+          "correctIndex": 1,
+          "el10": "An attacker already guessed your password and is ringing your doorbell 100 times hoping you get tired and open the door. Never open the door!",
+          "el10Hinglish": "Chor ke paas tumhare ghar ki chabi (password) aa chuki hai aur wo raat bhar doorbell baja raha hai taaki tum tang aakar darwaza khol do. Darwaza bilkul mat kholo!",
+          "soWhat": "MFA Fatigue was the exact attack vector behind the Uber, Cisco, and Lapsus$ corporate breaches.",
+          "remediationQuery": "mfa fatigue attack prevention number matching",
+          "videoId": "7a0v24w_ZqI",
+          "videoTitle": "MFA Fatigue: How Hackers Bypass Multi-Factor Authentication",
+          "cheatSheet": [
+            "Simple push notifications (Approve/Deny) are vulnerable to fatigue attacks.",
+            "Number matching forces the user to type the 2-digit code displayed on the login screen.",
+            "FIDO2 / WebAuthn hardware tokens are immune to push fatigue and phishing."
+          ]
+        },
+        {
+          "id": "q_phish_4",
+          "title": "The Invisible Cyrillic Impersonation",
+          "titleHinglish": "Invisible Cyrillic Character Attack (Punycode)",
+          "microTopic": "Internationalized Domain Names (IDN) & Punycode",
+          "scenario": "A browser bar displays what looks identical to \"apple.com\", but looking at the network certificate reveals something unexpected:",
+          "scenarioHinglish": "Browser mein \"apple.com\" dikh raha hai, lekin certificate details mein ye show ho raha hai:",
+          "evidenceType": "url",
+          "evidence": "Browser Address Bar: https://аpple.com/login\nRaw DNS Query: xn--pple-43d.com\nTLS Subject CN: xn--pple-43d.com (Issuer: Let's Encrypt)",
+          "options": [
+            {
+              "text": "Safe: The browser rendered Latin characters, which means the OS verified the typography.",
+              "textHinglish": "Safe hai: Browser ne standard letters render kiye hain."
+            },
+            {
+              "text": "Homograph Attack: The letter \"а\" is Cyrillic (U+0430), resolved by DNS as punycode \"xn--pple-43d.com\".",
+              "textHinglish": "Homograph Attack hai: Letter \"а\" Russian Cyrillic character hai, jiska asli DNS naam \"xn--pple-43d.com\" hai."
+            },
+            {
+              "text": "Safe: \"xn--\" is an internal DNS compression tag used by Apple Cloudflare edge servers.",
+              "textHinglish": "Safe hai: \"xn--\" Apple ke edge CDN ka speed booster tag hota hai."
+            },
+            {
+              "text": "Phishing: Only domains using .net or .org are capable of hosting TLS certificates.",
+              "textHinglish": "Phishing hai: Sirf .net domains par TLS certificate lag sakte hain."
+            }
+          ],
+          "correctIndex": 1,
+          "el10": "In the alphabet of another language, there is a letter that looks 100% like English \"a\", but the computer treats it like a completely different word.",
+          "el10Hinglish": "Russian bhasha mein ek letter hota hai jo bilkul English ke \"a\" jaisa dikhta hai, lekin computer ke liye wo bilkul alag character hai. Aankhein dhoka kha sakti hain!",
+          "soWhat": "Users will never spot the difference with human vision alone. Browsers and endpoint filters must inspect punycode strings.",
+          "remediationQuery": "punycode idn homograph attack explanation",
+          "videoId": "C03K8N3rQjM",
+          "videoTitle": "The Scariest Phishing Attack Ever (Punycode)",
+          "cheatSheet": [
+            "Any domain starting with \"xn--\" is a punycode representation of non-ASCII characters.",
+            "Password managers will not autofill credentials into punycode lookalike domains.",
+            "Always use password managers as a defensive shield against homograph tricks."
+          ]
+        }
+      ],
+      "timestamp": "2026-09-22T08:20:23.291Z"
+    },
+    {
+      "id": "diag_1790065182431",
+      "userId": "guest",
+      "domain": "Web Development Bootcamp",
+      "score": 100,
+      "missedCount": 0,
+      "missedQuestions": [],
+      "timestamp": "2026-09-22T08:19:42.431Z"
+    },
+    {
+      "id": "diag_1790065091815",
+      "userId": "guest",
+      "domain": "UI/UX Design Mastery",
+      "score": 50,
+      "missedCount": 1,
+      "missedQuestions": [
+        {
+          "id": "dyn_q_1",
+          "title": "UI/UX Design Mastery: Primary Attack Vector",
+          "titleHinglish": "UI/UX Design Mastery: Attack Vector Triage",
+          "microTopic": "UI/UX Design Mastery Fundamentals",
+          "scenario": "A SOC analyst detects anomalous activity involving UI/UX Design Mastery. The suspicious payload is captured in network telemetry.",
+          "scenarioHinglish": "Security team ko UI/UX Design Mastery se related suspicious network traffic detect hua hai.",
+          "evidenceType": "logs",
+          "evidence": "[ALERT_TRIG] UI/UX Design Mastery // SRC: 198.51.100.42 // DEST: 10.0.4.15:443 // PAYLOAD_LEN: 1024 // STATUS: SUSPICIOUS_INVOCATION",
+          "options": [
+            {
+              "text": "Exploit Attempt: The payload targets unverified input parameters and protocol trust flaws in UI/UX Design Mastery.",
+              "textHinglish": "Attack Attempt: Attacker UI/UX Design Mastery ke protocol flaw ko exploit karne ki koshish kar raha hai."
+            },
+            {
+              "text": "Normal administrative health check query from monitoring systems.",
+              "textHinglish": "Normal server health check status request hai."
+            },
+            {
+              "text": "Standard NTP clock synchronization packet.",
+              "textHinglish": "Standard network time sync packet hai."
+            },
+            {
+              "text": "Automatic SSL certificate renewal ping.",
+              "textHinglish": "SSL certificate renewal ping hai."
+            }
+          ],
+          "correctIndex": 0,
+          "el10": "Think of UI/UX Design Mastery like a locked gate. If the guard accepts a forged badge without calling the manager, an intruder walks straight in.",
+          "el10Hinglish": "UI/UX Design Mastery ko ek security gate ki tarah samjho. Agar guard bina signature check kiye gate khol de, to chor seedha andar ghus jata hai.",
+          "soWhat": "Overlooking UI/UX Design Mastery vulnerabilities allows malicious actors to establish persistence and compromise internal network perimeters.",
+          "remediationQuery": "UI/UX Design Mastery cybersecurity tutorial defense",
+          "cheatSheet": [
+            "Always validate inputs and cryptographically verify authentication tokens for UI/UX Design Mastery.",
+            "Enforce least-privilege access controls across all service accounts.",
+            "Monitor SIEM logs for anomalous invocation frequency."
+          ]
+        }
+      ],
+      "timestamp": "2026-09-22T08:18:11.815Z"
+    },
+    {
+      "id": "diag_1790064240905",
+      "userId": "guest",
+      "domain": "Cloud Infrastructure Security",
+      "score": 100,
+      "missedCount": 0,
+      "missedQuestions": [],
+      "timestamp": "2026-09-22T08:04:00.905Z"
+    },
     {
       "id": "diag_1790062818430",
       "userId": "guest",
@@ -195,6 +690,37 @@
   ],
   "squadNotes": [
     {
+      "id": "sn_1790072454071_g3u",
+      "author": "Agent_Operative",
+      "authorId": "usr_1790072453931_dt3n6",
+      "squad": "ZeroDay Hunters",
+      "topic": "Kerberoasting SPN Hunting",
+      "content": "Check for ServicePrincipalNames not ending in $ to find user service accounts.",
+      "contentHinglish": "User accounts me $ nahi hota SPN check karte waqt.",
+      "upvotes": 2,
+      "upvotedBy": [
+        "usr_1790072453931_dt3n6",
+        "usr_1790072454095_t3c1o"
+      ],
+      "timestamp": "Just now",
+      "createdAt": "2026-09-22T10:20:54.071Z"
+    },
+    {
+      "id": "sn_1790072434544_ag5",
+      "author": "Agent_Operative",
+      "authorId": "usr_1790072434384_65po0",
+      "squad": "ZeroDay Hunters",
+      "topic": "Kerberoasting SPN Hunting",
+      "content": "Check for ServicePrincipalNames not ending in $ to find user service accounts.",
+      "contentHinglish": "User accounts me $ nahi hota SPN check karte waqt.",
+      "upvotes": 1,
+      "upvotedBy": [
+        "usr_1790072434384_65po0"
+      ],
+      "timestamp": "Just now",
+      "createdAt": "2026-09-22T10:20:34.544Z"
+    },
+    {
       "id": "sn_1790062110753",
       "author": "Zero_Ghost",
       "authorId": "usr_1790062110752_zxiz8",
@@ -214,7 +740,7 @@
       "topic": "Subdomain Spoofing Rule of Thumb",
       "content": "Read URLs backwards from the first slash (/): apex domain is right before the TLD (.com, .org). Never trust subdomains alone!",
       "contentHinglish": "URL ko hamesha pehle slash (/) se ulta pado! Asli domain TLD ke theek pehle hota hai.",
-      "upvotes": 18,
+      "upvotes": 32,
       "timestamp": "2 hours ago"
     },
     {
@@ -225,7 +751,7 @@
       "topic": "DMARC p=none is useless",
       "content": "Remember for the exam: DMARC p=none only generates telemetry reports. Only p=quarantine or p=reject blocks forged emails.",
       "contentHinglish": "DMARC p=none sirf report banata hai, email block nahi karta. Block karne ke liye p=reject chahiye!",
-      "upvotes": 24,
+      "upvotes": 30,
       "timestamp": "Yesterday"
     }
   ],

@@ -43,8 +43,8 @@ export function renderSocialDashboard(container) {
         <div class="glass-card duel-card">
           <div class="duel-header">
             <div style="display: flex; align-items: center; gap: 0.5rem;">
-              <span style="font-size: 1.4rem;">⚔️</span>
-              <h3 style="font-size: 1.25rem; color: #fff;">
+              <span style="font-size: 1.4rem;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="14.5 17.5 3 6 3 3 6 3 17.5 14.5"></polyline><line x1="13" y1="19" x2="19" y2="13"></line></svg></span>
+              <h3 style="font-size: 1.25rem; color: var(--text-main);">
                 ${isHinglish ? '1v1 Scenario Duel Arena' : '1v1 Scenario Duel Arena'}
               </h3>
             </div>
@@ -61,8 +61,8 @@ export function renderSocialDashboard(container) {
           <div class="duel-fighters">
             <!-- Player -->
             <div class="fighter-avatar">
-              <div class="fighter-ring">🛡️</div>
-              <div style="font-weight: 700; font-size: 0.9rem; color: #fff;">${state.user.name}</div>
+              <div class="fighter-ring"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+              <div style="font-weight: 700; font-size: 0.9rem; color: var(--text-main);">${state.user.name}</div>
               <div style="font-size: 0.72rem; color: var(--neon-cyan); font-family: var(--font-mono);">
                 HP: ${duelState.playerHealth}%
               </div>
@@ -76,8 +76,8 @@ export function renderSocialDashboard(container) {
 
             <!-- AI / Peer Opponent -->
             <div class="fighter-avatar">
-              <div class="fighter-ring bot">👾</div>
-              <div style="font-weight: 700; font-size: 0.9rem; color: #fff;">ZeroDay_Bot</div>
+              <div class="fighter-ring bot"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 12h.01M18 12h.01M9 16h6M8 8V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><rect x="4" y="8" width="16" height="12" rx="2"></rect></svg></div>
+              <div style="font-weight: 700; font-size: 0.9rem; color: var(--text-main);">ZeroDay_Bot</div>
               <div style="font-size: 0.72rem; color: var(--neon-crimson); font-family: var(--font-mono);">
                 HP: ${duelState.botHealth}%
               </div>
@@ -88,11 +88,11 @@ export function renderSocialDashboard(container) {
           </div>
 
           <!-- Active Duel Scenario Box -->
-          <div style="background: rgba(0,0,0,0.4); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 1.25rem; margin-bottom: 1.25rem;">
+          <div style="background: var(--bg-card-alt); border: var(--border-mid); border-radius: var(--radius-md); padding: 1.25rem; margin-bottom: 1.25rem;">
             <div style="font-size: 0.75rem; font-family: var(--font-mono); color: var(--neon-amber); margin-bottom: 0.3rem;">
-              ⚡ SPEED ROUND #0${duelState.round} // TIME: ${duelState.timer}s
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg> SPEED ROUND #0${duelState.round} // TIME: ${duelState.timer}s
             </div>
-            <div style="font-weight: 600; font-size: 0.95rem; color: #fff; margin-bottom: 0.75rem;">
+            <div style="font-weight: 600; font-size: 0.95rem; color: var(--text-main); margin-bottom: 0.75rem;">
               "Attacker sent an email with from: ceo@bank.com. SPF failed, DMARC p=none. What happens?"
             </div>
 
@@ -115,7 +115,7 @@ export function renderSocialDashboard(container) {
               Score: ${duelState.playerScore} PTS
             </span>
             <button id="btn-reset-duel" class="btn btn-crimson btn-sm">
-              <span>🔥 ${isHinglish ? 'New Duel Round' : 'New Duel Round'}</span>
+              <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg> ${isHinglish ? 'New Duel Round' : 'New Duel Round'}</span>
             </button>
           </div>
         </div>
@@ -126,9 +126,9 @@ export function renderSocialDashboard(container) {
           <div class="glass-card" style="padding: 1.25rem; border-color: rgba(0, 245, 212, 0.3); background: linear-gradient(135deg, rgba(0, 245, 212, 0.08), rgba(13, 19, 34, 0.9));">
             <div style="display: flex; align-items: center; justify-content: space-between;">
               <div style="display: flex; align-items: center; gap: 0.75rem;">
-                <span style="font-size: 1.5rem;">📹</span>
+                <span style="font-size: 1.5rem;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg></span>
                 <div>
-                  <div style="font-weight: 700; font-size: 0.95rem; color: #fff;">
+                  <div style="font-weight: 700; font-size: 0.95rem; color: var(--text-main);">
                     ${isHinglish ? 'Drop-in Google Meet Study Room' : 'Drop-in Google Meet Study Room'}
                   </div>
                   <div style="font-size: 0.78rem; color: var(--text-secondary);">
@@ -145,8 +145,8 @@ export function renderSocialDashboard(container) {
           <!-- Squad Leaderboard Table -->
           <div class="glass-card" style="padding: 1.5rem;">
             <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem;">
-              <h3 style="font-size: 1.1rem; color: #fff;">
-                🏆 ${isHinglish ? 'Weekly Squad Leaderboard' : 'Weekly Squad Leaderboard'}
+              <h3 style="font-size: 1.1rem; color: var(--text-main);">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h2"></path><path d="M18 9h2a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-2"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.45 1-1 1H7v4h10v-4h-2c-.55 0-1-.45-1-1v-2.34"></path><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"></path></svg> ${isHinglish ? 'Weekly Squad Leaderboard' : 'Weekly Squad Leaderboard'}
               </h3>
               <span style="font-size: 0.75rem; font-family: var(--font-mono); color: var(--neon-cyan);">
                 SQUAD: ${state.user.squad}
@@ -165,7 +165,7 @@ export function renderSocialDashboard(container) {
               <tbody>
                 <tr>
                   <td class="rank-pill">#01</td>
-                  <td style="color: #fff; font-weight: 600;">Arjun_S</td>
+                  <td style="color: var(--text-main); font-weight: 600;">Arjun_S</td>
                   <td><span class="tier-badge tier-2">Tier 2</span></td>
                   <td style="color: var(--neon-cyan); font-family: var(--font-mono);">1,420 XP</td>
                 </tr>
@@ -177,13 +177,13 @@ export function renderSocialDashboard(container) {
                 </tr>
                 <tr>
                   <td class="rank-pill">#03</td>
-                  <td style="color: #fff; font-weight: 600;">Priya_K</td>
+                  <td style="color: var(--text-main); font-weight: 600;">Priya_K</td>
                   <td><span class="tier-badge tier-2">Tier 2</span></td>
                   <td style="color: var(--neon-cyan); font-family: var(--font-mono);">980 XP</td>
                 </tr>
                 <tr>
                   <td class="rank-pill">#04</td>
-                  <td style="color: #fff; font-weight: 600;">Vikram_R</td>
+                  <td style="color: var(--text-main); font-weight: 600;">Vikram_R</td>
                   <td><span class="tier-badge tier-1">Tier 1</span></td>
                   <td style="color: var(--neon-cyan); font-family: var(--font-mono);">760 XP</td>
                 </tr>
@@ -197,8 +197,8 @@ export function renderSocialDashboard(container) {
       <div class="glass-card" style="padding: 1.75rem; margin-bottom: 2rem;">
         <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; flex-wrap: wrap; gap: 0.75rem;">
           <div>
-            <h3 style="font-size: 1.25rem; color: #fff;">
-              📚 ${isHinglish ? 'Squad Notes Repository' : 'Squad Collaborative Notes Repository'}
+            <h3 style="font-size: 1.25rem; color: var(--text-main);">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg> ${isHinglish ? 'Squad Notes Repository' : 'Squad Collaborative Notes Repository'}
             </h3>
             <p style="font-size: 0.85rem; color: var(--text-secondary);">
               ${isHinglish ? 'Apne squad ke dosto ke saath verified exam tips share karein.' : 'Crowdsourced micro-cheat sheets and exam tips from active squad peers.'}
@@ -212,18 +212,18 @@ export function renderSocialDashboard(container) {
 
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1rem;">
           ${state.squadNotes.map(n => `
-            <div style="background: rgba(0,0,0,0.3); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 1.2rem;">
+            <div style="background: var(--bg-card-alt); border: var(--border-thin); border-radius: var(--radius-md); padding: 1.2rem;">
               <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem;">
                 <span style="font-size: 0.75rem; font-family: var(--font-mono); color: var(--neon-cyan);">
-                  👤 ${n.author} // ${n.timestamp}
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg> ${n.author} // ${n.timestamp}
                 </span>
-                <button class="btn btn-ghost btn-sm upvote-btn" data-note-id="${n.id}" style="padding: 0.2rem 0.5rem; font-size: 0.75rem;">
-                  ▲ ${n.upvotes}
+                <button class="btn btn-ghost btn-sm upvote-btn" data-note-id="${n.id}" style="padding: 0.2rem 0.5rem; font-size: 0.75rem; display: inline-flex; align-items: center; gap: 4px;">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"></polyline></svg> <span>${n.upvotes}</span>
                 </button>
               </div>
 
-              <h4 style="font-size: 0.95rem; color: #fff; margin-bottom: 0.35rem;">${n.topic}</h4>
-              <p style="font-size: 0.85rem; color: #cbd5e1; line-height: 1.45;">
+              <h4 style="font-size: 0.95rem; color: var(--text-main); margin-bottom: 0.35rem;">${n.topic}</h4>
+              <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.45;">
                 ${isHinglish ? n.contentHinglish : n.content}
               </p>
             </div>
@@ -251,7 +251,7 @@ export function renderSocialDashboard(container) {
         btn.style.background = 'rgba(16, 185, 129, 0.2)';
         if (duelState.botHealth === 0) {
           soundFX.playFanfare();
-          store.broadcastPresence(`🏆 ${state.user.name} defeated ZeroDay_Bot in a 1v1 Scenario Duel!`, 'duel');
+          store.broadcastPresence(`<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h2"></path><path d="M18 9h2a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-2"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.45 1-1 1H7v4h10v-4h-2c-.55 0-1-.45-1-1v-2.34"></path><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"></path></svg> ${state.user.name} defeated ZeroDay_Bot in a 1v1 Scenario Duel!`, 'duel');
         }
       } else {
         soundFX.playAlert();

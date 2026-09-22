@@ -53,42 +53,42 @@ export function renderSkillGapView(container) {
           </p>
           <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
             <button id="btn-goto-lab" class="btn btn-cyan">
-              <span>🚀 ${isHinglish ? 'Surgical Learning Lab Kholo' : 'Enter Surgical Learning Lab'}</span>
+              <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path></svg> ${isHinglish ? 'Surgical Learning Lab Kholo' : 'Enter Surgical Learning Lab'}</span>
             </button>
             <button id="btn-goto-mastery" class="btn btn-violet">
-              <span>⚔️ ${isHinglish ? 'Mastery Arena Test' : 'Attempt Mastery Arena'}</span>
+              <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="14.5 17.5 3 6 3 3 6 3 17.5 14.5"></polyline><line x1="13" y1="19" x2="19" y2="13"></line></svg> ${isHinglish ? 'Mastery Arena Test' : 'Attempt Mastery Arena'}</span>
             </button>
           </div>
         </div>
       </div>
 
       <!-- The "So What?" Factor Breakdown Cards -->
-      <h3 style="font-size: 1.3rem; margin-bottom: 1rem; color: #fff; display: flex; align-items: center; gap: 0.5rem;">
-        <span>🎯</span>
+      <h3 style="font-size: 1.3rem; margin-bottom: 1rem; color: var(--text-main); display: flex; align-items: center; gap: 0.5rem;">
+        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg></span>
         <span>${isHinglish ? 'The "So What?" Factor (Real-World Risk)' : 'The "So What?" Factor (Real-World Impact)'}</span>
       </h3>
 
       <div class="sowhat-grid">
         ${missed.length > 0 ? missed.map(q => `
           <div class="glass-card sowhat-card">
-            <div class="sowhat-pill">⚠️ ${q.microTopic}</div>
+            <div class="sowhat-pill"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg> ${q.microTopic}</div>
             <h4 class="sowhat-title">${isHinglish ? q.titleHinglish : q.title}</h4>
             <div class="sowhat-body">
-              <strong style="color: #f1f5f9;">${isHinglish ? 'Asal Mein Kya Nuksaan Hoga:' : 'Production Reality:'}</strong>
+              <strong style="color: var(--text-main);">${isHinglish ? 'Asal Mein Kya Nuksaan Hoga:' : 'Production Reality:'}</strong>
               <div style="margin-top: 0.25rem;">${q.soWhat}</div>
             </div>
             <div class="remediation-remedy">
-              <strong>🛠️ ${isHinglish ? 'Surgical Path:' : 'Remediation Focus:'}</strong>
+              <strong><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg> ${isHinglish ? 'Surgical Path:' : 'Remediation Focus:'}</strong>
               <span>${q.cheatSheet?.[0] || 'Domain tree inspection & cryptographic validation'}</span>
             </div>
           </div>
         `).join('') : `
           <div class="glass-card sowhat-card" style="border-left-color: var(--neon-green);">
-            <div class="sowhat-pill" style="color: var(--neon-green);">✓ Flawless Diagnostic</div>
+            <div class="sowhat-pill" style="color: var(--neon-green);"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Flawless Diagnostic</div>
             <h4 class="sowhat-title">Zero Baseline Weaknesses Detected</h4>
             <div class="sowhat-body">You correctly identified every single deceptive attack vector and protocol spoofing attempt.</div>
             <div class="remediation-remedy">
-              <strong>🛠️ Next Step:</strong> Advance to Tier 2 attack simulation mechanics.
+              <strong><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg> Next Step:</strong> Advance to Tier 2 attack simulation mechanics.
             </div>
           </div>
         `}
@@ -98,10 +98,12 @@ export function renderSkillGapView(container) {
       <div class="json-schema-drawer">
         <div class="json-header-toggle" id="btn-toggle-json">
           <div style="display: flex; align-items: center; gap: 0.5rem;">
-            <span>📄</span>
+            <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></span>
             <span>STRUCTURED JSON WEAKNESS SCHEMA (Gemini AI Output)</span>
           </div>
-          <span id="json-toggle-icon">▼</span>
+          <span id="json-toggle-icon">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </span>
         </div>
         <div class="json-code-block" id="json-block-content">
           <pre>${escapeHTML(JSON.stringify({
@@ -139,10 +141,10 @@ export function renderSkillGapView(container) {
   toggleBtn?.addEventListener('click', () => {
     if (jsonBlock.style.display === 'none') {
       jsonBlock.style.display = 'block';
-      toggleIcon.textContent = '▼';
+      toggleIcon.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>';
     } else {
       jsonBlock.style.display = 'none';
-      toggleIcon.textContent = '▶';
+      toggleIcon.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>';
     }
   });
 }

@@ -1,6 +1,8 @@
 /**
  * Kairos Persistent Database Engine
  * File-backed persistent storage for Users, Sessions, Diagnostics, Squad Notes, and Duels.
+ * Supports PBKDF2 cryptographic hashing with salt, legacy sha256 fallback,
+ * persistent session tokens, atomic writes, and Firebase Cloud Database synchronization.
  */
 
 import fs from 'fs';
@@ -61,6 +63,14 @@ class Database {
         if (!Array.isArray(this.data.sessions)) {
           this.data.sessions = [];
         }
+        // Ensure existing users have ad-kerberoasting in unlockedTiers
+        if (Array.isArray(this.data.users)) {
+          this.data.users.forEach(u => {
+            if (u.unlockedTiers && u.unlockedTiers['ad-kerberoasting'] === undefined) {
+              u.unlockedTiers['ad-kerberoasting'] = 1;
+            }
+          });
+        }
       } catch (e) {
         console.warn('Could not read existing db.json, initializing fresh store:', e);
       }
@@ -74,7 +84,7 @@ class Database {
       const tmpFile = DB_FILE + '.tmp';
       fs.writeFileSync(tmpFile, JSON.stringify(this.data, null, 2), 'utf-8');
       fs.renameSync(tmpFile, DB_FILE);
-      if (firebaseBackend.isConfigured()) {
+      if (firebaseBackend && firebaseBackend.isConfigured()) {
         firebaseBackend.syncToCloud('db', this.data).catch(() => {});
       }
     } catch (e) {
@@ -92,9 +102,9 @@ class Database {
   }
 
   verifyPassword(password, salt, storedHash) {
-    if (!salt || !storedHash) return false;
+    if (!storedHash) return false;
     // Legacy single-pass sha256 fallback for existing test accounts
-    if (salt === 'sha256_legacy') {
+    if (!salt || salt === 'sha256_legacy') {
       const legacyHash = crypto.createHash('sha256').update(password).digest('hex');
       return legacyHash === storedHash;
     }
@@ -146,7 +156,7 @@ class Database {
   }
 
   // User Methods
-  createUser({ username, email = '', password, callSign, squad = 'ZeroDay Hunters', targetTrack = 'phishing-social-eng' }) {
+  createUser({ username, email = '', password, callSign, squad = 'ZeroDay Hunters', targetTrack = 'ad-kerberoasting' }) {
     if (!username || typeof username !== 'string' || !password || typeof password !== 'string') {
       throw new Error('Username and password are required.');
     }
@@ -167,17 +177,18 @@ class Database {
 
     const user = {
       id: 'usr_' + Date.now() + '_' + Math.random().toString(36).substring(2, 7),
-      username,
-      email: email || '',
+      username: username.trim(),
+      email: cleanEmail,
       passwordSalt: salt,
       passwordHash: hash,
-      callSign: callSign || `Agent_${username}`,
+      callSign: callSign || `Agent_${username.trim()}`,
       squad: squad || 'ZeroDay Hunters',
-      targetTrack: targetTrack || 'phishing-social-eng',
+      targetTrack: targetTrack || 'ad-kerberoasting',
       level: 1,
       xp: 250,
       streak: 1,
       unlockedTiers: {
+        'ad-kerberoasting': 1,
         'phishing-social-eng': 1,
         'malware-defense': 1,
         'network-exploitation': 1,
@@ -301,4 +312,3 @@ class Database {
 }
 
 export const db = new Database();
-
