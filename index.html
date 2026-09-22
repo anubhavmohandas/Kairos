@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0a0e17" />
+    <meta name="description" content="Kairos: AI-Driven Cybersecurity Skill Mastery Engine powered by Google Gemini, EL10 Methodology, Grounded YouTube Learning, and Steam-Style Social Duels." />
+    <title>Kairos // AI-Driven Cybersecurity Skill Mastery Engine</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="/src/styles/main.css" />
+  </head>
+  <body class="cyber-theme">
+    <!-- Ambient Background Cyber Effects -->
+    <div class="cyber-grid-bg" aria-hidden="true"></div>
+    <div class="cyber-glow-blob blob-1" aria-hidden="true"></div>
+    <div class="cyber-glow-blob blob-2" aria-hidden="true"></div>
+    <div class="scanline-overlay" aria-hidden="true"></div>
+
+    <!-- Main App Container -->
+    <div id="app" class="app-root">
+      <!-- Navbar / HUD header rendered dynamically -->
+      <header id="header-root"></header>
+
+      <!-- Main Dynamic Viewport -->
+      <main id="main-content" class="main-container" role="main"></main>
+
+      <!-- Live Stream Bar / Footer -->
+      <footer id="footer-stream" class="footer-presence-bar"></footer>
+    </div>
+
+    <!-- Persistent Floating ELI5 AI Tutor Side-Button & Drawer -->
+    <aside id="tutor-root"></aside>
+
+    <!-- Modal Root for Pitch Deck, PDF Ingestion, Settings, and 1v1 Duels -->
+    <div id="modal-root" class="modal-container hidden" aria-hidden="true"></div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
