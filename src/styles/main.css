@@ -249,14 +249,15 @@ body {
 
 .nav-content {
   width: 100%;
-  max-width: 1420px; /* Extended length as requested! */
+  max-width: 1040px; /* Reduced width: compact, sleek floating pill */
+  min-height: 66px; /* Increased height */
   background: rgba(255, 255, 255, 0.68); /* Translucent glassmorphic transparency */
   backdrop-filter: blur(18px) saturate(190%);
   -webkit-backdrop-filter: blur(18px) saturate(190%);
   border: var(--border-neo);
   border-radius: var(--radius-pill);
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.08), var(--shadow-btn);
-  padding: 8px 22px;
+  padding: 14px 28px; /* Increased vertical and horizontal padding for taller height */
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -647,13 +648,14 @@ body {
   box-shadow: 0px 0px 0px;
 }
 
-@media (max-width: 1180px) {
+@media (max-width: 960px) {
   .cyber-nav {
     padding: 0 10px;
     top: 14px;
   }
   .nav-content {
-    padding: 5px 12px;
+    padding: 8px 16px;
+    min-height: 54px;
     gap: 8px;
     overflow-x: auto;
     scrollbar-width: none;
