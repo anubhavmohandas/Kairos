@@ -4641,3 +4641,113 @@ body {
   border-color: var(--neon-crimson);
   color: var(--neon-crimson);
 }
+
+/* Operative Radar Card Extensions */
+.operative-radar-card {
+  border-left: 5px solid var(--neon-cyan) !important;
+}
+
+[data-theme="dark"] .operative-radar-card {
+  background: #0d131f;
+  border-color: rgba(0, 245, 212, 0.4);
+  border-left-color: var(--neon-cyan) !important;
+  box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.6);
+}
+
+.operative-icon-box {
+  background: rgba(0, 245, 212, 0.12) !important;
+  border: 1.5px solid var(--neon-cyan) !important;
+  color: var(--neon-cyan) !important;
+  box-shadow: 2px 2px 0px var(--border-color);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.operative-icon-box:hover {
+  transform: scale(1.08);
+  background: rgba(0, 245, 212, 0.22) !important;
+}
+
+[data-theme="light"] .operative-icon-box {
+  background: #f0fdf4 !important;
+  border-color: #16a34a !important;
+  color: #16a34a !important;
+}
+
+.active-track-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: var(--neon-cyan);
+  margin-bottom: 2px;
+}
+
+[data-theme="light"] .active-track-eyebrow {
+  color: #059669;
+}
+
+/* Telemetry Badges Row */
+.hero-card-telemetry-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+
+.telemetry-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg-card-alt);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-pill);
+  padding: 3px 10px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+[data-theme="light"] .telemetry-pill {
+  background: #f8fafc;
+  border-color: #e2e8f0;
+  color: #334155;
+}
+
+.telemetry-pill-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.dot-cyan { background: var(--neon-cyan); box-shadow: 0 0 5px var(--neon-cyan); }
+.dot-amber { background: #f59e0b; box-shadow: 0 0 5px #f59e0b; }
+.dot-green { background: #10b981; box-shadow: 0 0 5px #10b981; }
+
+.btn-engage-mission {
+  background: var(--neon-cyan);
+  border-color: #111827;
+  color: #111827;
+  box-shadow: 3px 3px 0px #111827;
+}
+
+.btn-engage-mission:hover {
+  background: #2dd4bf;
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0px #111827;
+}
+
+[data-theme="light"] .btn-engage-mission {
+  background: #16a34a;
+  color: #ffffff;
+  border-color: #111827;
+}
+
+[data-theme="light"] .btn-engage-mission:hover {
+  background: #15803d;
+}

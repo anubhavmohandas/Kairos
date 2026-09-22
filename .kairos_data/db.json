@@ -181,8 +181,8 @@
       "callSign": "v",
       "squad": "ZeroDay Hunters",
       "targetTrack": "ad-kerberoasting",
-      "level": 1,
-      "xp": 350,
+      "level": 3,
+      "xp": 1350,
       "streak": 1,
       "unlockedTiers": {
         "ad-kerberoasting": 1,
@@ -190,7 +190,8 @@
         "malware-defense": 1,
         "network-exploitation": 1,
         "identity-token": 1,
-        "cloud-security": 1
+        "cloud-security": 1,
+        "dyn_1790075658688": 2
       },
       "createdAt": "2026-09-22T10:26:02.293Z"
     },
@@ -216,6 +217,28 @@
         "dyn_1790074681550": 2
       },
       "createdAt": "2026-09-22T10:56:58.831Z"
+    },
+    {
+      "id": "usr_1790076492506_uj30g",
+      "username": "abcd",
+      "email": "vinitshakya@gmail.com",
+      "passwordSalt": "35822e25285e53d6c9e87345f0526994",
+      "passwordHash": "8f7d43191aec2c12eb5691d9c16a23c799562ef6ed96211c566cbf714a0aaf1aeb116e5f35e9525ca00aee83f04f24252d84455beec1e41d4c78b5c42cb54182",
+      "callSign": "abcd",
+      "squad": "RedTeam Alpha",
+      "targetTrack": "ad-kerberoasting",
+      "level": 1,
+      "xp": 290,
+      "streak": 1,
+      "unlockedTiers": {
+        "ad-kerberoasting": 1,
+        "phishing-social-eng": 1,
+        "malware-defense": 1,
+        "network-exploitation": 1,
+        "identity-token": 1,
+        "cloud-security": 1
+      },
+      "createdAt": "2026-09-22T11:28:12.506Z"
     }
   ],
   "sessions": [
@@ -242,15 +265,36 @@
       "userId": "usr_1790072762293_dwpvr",
       "createdAt": "2026-09-22T10:26:02.315Z",
       "expiresAt": "2026-09-29T10:26:02.315Z"
-    },
-    {
-      "token": "tok_607140f3e34efd0c6ed12c533d84822bb1079fd45c93a9f4",
-      "userId": "usr_1790074618831_7rjrw",
-      "createdAt": "2026-09-22T10:57:46.617Z",
-      "expiresAt": "2026-09-29T10:57:46.617Z"
     }
   ],
   "diagnostics": [
+    {
+      "id": "diag_1790076639446",
+      "userId": "usr_1790076492506_uj30g",
+      "domain": "metasploit",
+      "score": 100,
+      "missedCount": 0,
+      "missedQuestions": [],
+      "timestamp": "2026-09-22T11:30:39.446Z"
+    },
+    {
+      "id": "diag_1790075891828",
+      "userId": "usr_1790072762293_dwpvr",
+      "domain": "UI/UX Design Mastery",
+      "score": 100,
+      "missedCount": 0,
+      "missedQuestions": [],
+      "timestamp": "2026-09-22T11:18:11.828Z"
+    },
+    {
+      "id": "diag_1790075669100",
+      "userId": "usr_1790072762293_dwpvr",
+      "domain": "Quantum Cryptography Primer",
+      "score": 100,
+      "missedCount": 0,
+      "missedQuestions": [],
+      "timestamp": "2026-09-22T11:14:29.100Z"
+    },
     {
       "id": "diag_1790074906886",
       "userId": "guest",
@@ -914,8 +958,11 @@
       "topic": "DMARC p=none is useless",
       "content": "Remember for the exam: DMARC p=none only generates telemetry reports. Only p=quarantine or p=reject blocks forged emails.",
       "contentHinglish": "DMARC p=none sirf report banata hai, email block nahi karta. Block karne ke liye p=reject chahiye!",
-      "upvotes": 30,
-      "timestamp": "Yesterday"
+      "upvotes": 31,
+      "timestamp": "Yesterday",
+      "upvotedBy": [
+        "usr_1790072762293_dwpvr"
+      ]
     }
   ],
   "duels": [],

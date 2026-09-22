@@ -127,69 +127,95 @@ export function renderTopicSelector(container) {
         <!-- RIGHT HERO VISUAL: SHOWCASE CARD WITH 3 FLOATING BADGES -->
         <div class="hero-right-showcase">
           
-          <!-- Floating Badge 1: Top-Right Target (Pink square with red concentric target) -->
-          <div class="floating-badge badge-pos-target" title="Mastery Target">
+          <!-- Floating Badge 1: Top-Right Threat Recon Target -->
+          <div class="floating-badge badge-pos-target" id="heroBadgeTarget" title="Active Threat Vector Recon">
             <div class="badge-icon-box">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
-                <circle cx="12" cy="12" r="10" stroke="#e11d48" stroke-width="2.4" fill="none"/>
-                <circle cx="12" cy="12" r="6" stroke="#e11d48" stroke-width="2.4" fill="none"/>
-                <circle cx="12" cy="12" r="2.5" fill="#e11d48"/>
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#e11d48" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="22" y1="12" x2="18" y2="12"></line>
+                <line x1="6" y1="12" x2="2" y2="12"></line>
+                <line x1="12" y1="6" x2="12" y2="2"></line>
+                <line x1="12" y1="22" x2="12" y2="18"></line>
               </svg>
             </div>
           </div>
 
-          <!-- Floating Badge 2: Bottom-Right Star (Mint circle with golden 5-point star) -->
-          <div class="floating-badge badge-pos-star" title="Top Achievement">
+          <!-- Floating Badge 2: Bottom-Right Operative Rank & Streak -->
+          <div class="floating-badge badge-pos-star" id="heroBadgeRank" title="Operative Rank & XP Progression">
             <div class="badge-icon-box">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="#facc15" stroke="#ca8a04" stroke-width="1.5">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="#facc15" stroke="#ca8a04" stroke-width="1.8" stroke-linejoin="round">
                 <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
               </svg>
             </div>
           </div>
 
-          <!-- Floating Badge 3: Bottom-Left Stacked Books (Cyan square with 3 colored books) -->
-          <div class="floating-badge badge-pos-books" title="Curated Knowledge Tracks">
+          <!-- Floating Badge 3: Bottom-Left Knowledge Tracks -->
+          <div class="floating-badge badge-pos-books" id="heroBadgeTracks" title="Curated Cybersecurity Mastery Tiers">
             <div class="badge-icon-box">
-              <svg width="30" height="30" viewBox="0 0 28 28" fill="none">
-                <rect x="3" y="19" width="22" height="5.5" rx="2" fill="#22c55e" stroke="#111827" stroke-width="1.8"/>
-                <line x1="6" y1="21.8" x2="22" y2="21.8" stroke="#ffffff" stroke-width="1.2" stroke-linecap="round"/>
-                <rect x="5" y="12" width="20" height="5.5" rx="2" fill="#38bdf8" stroke="#111827" stroke-width="1.8"/>
-                <line x1="8" y1="14.8" x2="22" y2="14.8" stroke="#ffffff" stroke-width="1.2" stroke-linecap="round"/>
-                <rect x="4" y="5" width="19" height="5.5" rx="2" fill="#f43f5e" stroke="#111827" stroke-width="1.8"/>
-                <line x1="7" y1="7.8" x2="20" y2="7.8" stroke="#ffffff" stroke-width="1.2" stroke-linecap="round"/>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
               </svg>
             </div>
           </div>
 
-          <!-- The Main Neo-Brutalist Showcase Card -->
-          <div class="student-showcase-card" id="demoHeroCard">
+          <!-- The Main Neo-Brutalist Operative Mission Radar Card -->
+          <div class="student-showcase-card operative-radar-card" id="heroOperativeCard">
             <!-- Top Banner -->
             <div class="showcase-top-banner">
-              <div class="course-play-icon-box">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="#111827" stroke="#111827" stroke-width="2" stroke-linejoin="round">
-                  <polygon points="6 4 20 12 6 20 6 4"></polygon>
+              <div class="course-play-icon-box operative-icon-box" id="heroPlayIconBox" title="Click to launch active discipline simulation">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                  <polyline points="2 17 12 22 22 17"></polyline>
+                  <polyline points="2 12 12 17 22 12"></polyline>
                 </svg>
               </div>
               <div class="course-header-text">
-                <h3 class="active-track-name" id="demoCardTitle">Web Development</h3>
-                <span class="active-track-meta">12 lessons • 4h 30m</span>
+                <div class="active-track-eyebrow">
+                  <span class="live-dot-pulse"></span>
+                  <span id="heroMissionStatus">${state.user.isAuthenticated ? 'OPERATIVE MISSION' : 'ACTIVE DISCIPLINE'}</span>
+                </div>
+                <h3 class="active-track-name" id="heroCardTitle">Active Directory Kerberoasting</h3>
+                <span class="active-track-meta" id="heroCardMeta">
+                  5 Micro-Topics • SPN Recon & TGS Tickets
+                </span>
+              </div>
+            </div>
+
+            <!-- Dynamic Telemetry Badges Strip -->
+            <div class="hero-card-telemetry-row">
+              <div class="telemetry-pill">
+                <span class="telemetry-pill-dot dot-cyan"></span>
+                <span id="heroTelemetryThreat">Hashcat Mode 13100</span>
+              </div>
+              <div class="telemetry-pill">
+                <span class="telemetry-pill-dot dot-amber"></span>
+                <span id="heroTelemetrySIEM">Event ID 4769</span>
+              </div>
+              <div class="telemetry-pill">
+                <span class="telemetry-pill-dot dot-green"></span>
+                <span id="heroTelemetryLab">Live SIEM Ready</span>
               </div>
             </div>
 
             <!-- Progress Bar -->
             <div class="progress-bar-wrap">
               <div class="progress-header-labels">
-                <span class="progress-label-text">Progress</span>
-                <span class="progress-pct-text" id="demoPercentText">65%</span>
+                <span class="progress-label-text">${isHinglish ? 'Operative Readiness' : 'Operative Readiness'}</span>
+                <span class="progress-pct-text" id="heroPercentText">85%</span>
               </div>
               <div class="progress-track-bg">
-                <div class="progress-track-fill" id="demoProgressFill" style="width: 65%;"></div>
+                <div class="progress-track-fill" id="heroProgressFill" style="width: 85%;"></div>
               </div>
             </div>
 
-            <!-- Continue Training Pill Button -->
-            <button class="btn-continue-action" id="btn-continue-demo-track">
-              <span>${isHinglish ? 'Continue Learning' : 'Continue Learning'}</span>
+            <!-- Continue / Engage Mission Action Button -->
+            <button class="btn-continue-action btn-engage-mission" id="btn-continue-active-mission">
+              <span id="heroContinueBtnText">${isHinglish ? 'Mission Shuru Karein' : 'Engage Mission HUD'}</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
             </button>
           </div>
 
@@ -695,6 +721,7 @@ export function renderTopicSelector(container) {
       const topic = card.getAttribute('data-topic');
       const input = container.querySelector('#custom-topic-input');
       if (input) input.value = topic;
+      updateHeroCard(topic);
       synthesizeCustomTopic(topic);
     });
   });
@@ -718,10 +745,82 @@ export function renderTopicSelector(container) {
     if (sec) sec.scrollIntoView({ behavior: 'smooth' });
   });
 
-  // 4. Continue Learning Button in Showcase Card
-  container.querySelector('#btn-continue-demo-track')?.addEventListener('click', () => {
+  // Helper to dynamically synchronize showcase card with active topic input
+  function updateHeroCard(topicName) {
+    const cardTitle = container.querySelector('#heroCardTitle');
+    const cardMeta = container.querySelector('#heroCardMeta');
+    const threatTag = container.querySelector('#heroTelemetryThreat');
+    const siemTag = container.querySelector('#heroTelemetrySIEM');
+    const labTag = container.querySelector('#heroTelemetryLab');
+    const btnText = container.querySelector('#heroContinueBtnText');
+    const pctText = container.querySelector('#heroPercentText');
+    const fillBar = container.querySelector('#heroProgressFill');
+
+    const clean = (topicName || '').trim();
+    if (!clean) return;
+
+    const lower = clean.toLowerCase();
+    let meta = '5 Micro-Topics • Level 1: Mechanics';
+    let threat = 'Threat Recon';
+    let siem = 'Telemetry Stream';
+    let pct = 75;
+
+    if (lower.includes('kerberoast') || lower.includes('active directory')) {
+      meta = '5 Micro-Topics • SPN Recon & TGS Tickets';
+      threat = 'Hashcat Mode 13100';
+      siem = 'Event ID 4769';
+      pct = 85;
+    } else if (lower.includes('kubernetes') || lower.includes('token')) {
+      meta = '4 Micro-Topics • ServiceAccount Token Hijacking';
+      threat = 'Kubelet RBAC';
+      siem = 'API Server Audit';
+      pct = 70;
+    } else if (lower.includes('smart contract') || lower.includes('reentrancy')) {
+      meta = '4 Micro-Topics • EVM Fallback & State Drain';
+      threat = 'Reentrancy Vector';
+      siem = 'Tx Trace Analysis';
+      pct = 80;
+    } else if (lower.includes('web') || lower.includes('bootcamp')) {
+      meta = '6 Micro-Topics • XSS, CSP & Defensive Coding';
+      threat = 'XSS Payload';
+      siem = 'WAF Telemetry';
+      pct = 90;
+    } else {
+      meta = `AI Grounded Roadmap • Tier 0${store.getState().currentTier} Mechanics`;
+      threat = 'Vulnerability Triage';
+      siem = 'Dynamic Telemetry';
+      pct = 65;
+    }
+
+    if (cardTitle) cardTitle.textContent = clean;
+    if (cardMeta) cardMeta.textContent = meta;
+    if (threatTag) threatTag.textContent = threat;
+    if (siemTag) siemTag.textContent = siem;
+    if (labTag) labTag.textContent = 'Live SIEM Ready';
+    if (pctText) pctText.textContent = `${pct}%`;
+    if (fillBar) fillBar.style.width = `${pct}%`;
+    if (btnText) {
+      btnText.textContent = isHinglish ? `"${clean.slice(0, 16)}..." Shuru Karein` : `Engage "${clean.slice(0, 18)}"`;
+    }
+  }
+
+  // Real-time synchronization as user types
+  const customInput = container.querySelector('#custom-topic-input');
+  customInput?.addEventListener('input', (e) => {
+    updateHeroCard(e.target.value);
+  });
+
+  // 4. Engage Mission Button in Showcase Card (Real Launch, Not Demo!)
+  container.querySelector('#btn-continue-active-mission')?.addEventListener('click', () => {
     soundFX.playClick();
-    store.selectDomain(CYBER_DOMAINS[0].id);
+    const topic = customInput?.value.trim() || 'Active Directory Kerberoasting';
+    synthesizeCustomTopic(topic);
+  });
+
+  container.querySelector('#heroPlayIconBox')?.addEventListener('click', () => {
+    soundFX.playClick();
+    const topic = customInput?.value.trim() || 'Active Directory Kerberoasting';
+    synthesizeCustomTopic(topic);
   });
 
   // 5. Start Learning Free Hero Button
@@ -745,6 +844,7 @@ export function renderTopicSelector(container) {
       const topic = chip.getAttribute('data-topic');
       const input = container.querySelector('#custom-topic-input');
       if (input) input.value = topic;
+      updateHeroCard(topic);
       synthesizeCustomTopic(topic);
     });
   });
@@ -782,6 +882,7 @@ export function renderTopicSelector(container) {
       const topic = link.getAttribute('data-topic');
       const input = container.querySelector('#custom-topic-input');
       if (input) input.value = topic;
+      updateHeroCard(topic);
       synthesizeCustomTopic(topic);
     });
   });
