@@ -240,7 +240,7 @@ body {
   top: 18px; /* Generous breathing room from the top */
   z-index: 1000;
   background: transparent;
-  padding: 0 20px;
+  padding: 0 1.25rem; /* Exactly matches .main-container gutter */
   display: flex;
   justify-content: center;
   width: 100%;
@@ -249,15 +249,15 @@ body {
 
 .nav-content {
   width: 100%;
-  max-width: 1040px; /* Reduced width: compact, sleek floating pill */
-  min-height: 66px; /* Increased height */
+  max-width: 1200px; /* Perfectly covers the main container width */
+  min-height: 66px; /* Increased taller height */
   background: rgba(255, 255, 255, 0.68); /* Translucent glassmorphic transparency */
   backdrop-filter: blur(18px) saturate(190%);
   -webkit-backdrop-filter: blur(18px) saturate(190%);
   border: var(--border-neo);
-  border-radius: var(--radius-pill);
+  border-radius: 14px; /* Reduced corner radius as requested */
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.08), var(--shadow-btn);
-  padding: 14px 28px; /* Increased vertical and horizontal padding for taller height */
+  padding: 14px 28px; /* Taller vertical padding */
   display: flex;
   align-items: center;
   justify-content: space-between;
