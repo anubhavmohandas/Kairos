@@ -274,26 +274,77 @@ export function renderLearningLab(container) {
           </div>
 
           <!-- Custom Reference / Syllabus Ingestion Dropzone -->
-          <div class="glass-card notes-card">
-            <div style="font-weight: 700; font-size: 0.95rem; margin-bottom: 0.4rem; color: var(--text-main);">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg> ${isHinglish ? 'Custom Notes / PDF Syllabus Upload' : 'Custom Syllabus & Notes Ingestion'}
+          <div class="glass-card notes-card syllabus-ingestion-card">
+            <div class="syllabus-header-row">
+              <div class="syllabus-icon-badge">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+                </svg>
+              </div>
+              <div>
+                <div class="syllabus-eyebrow">// RAG GROUNDING ENGINE</div>
+                <h3 class="syllabus-title">
+                  ${isHinglish ? 'Custom Notes & Syllabus Ingestion' : 'Custom Syllabus & Notes Ingestion'}
+                </h3>
+              </div>
             </div>
-            <p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 1rem;">
+
+            <p class="syllabus-desc">
               ${isHinglish
-                ? 'Apne college ya company ke specific notes upload karein taaki AI unhi ke hisaab se teach kare.'
-                : 'Upload your organization notes or textbook excerpt to ground the AI strictly to your curriculum.'}
+                ? 'Apne college ya enterprise organization ke notes upload karein taaki AI unhi ke hisaab se ground hokar train kare.'
+                : 'Upload organizational notes or textbook excerpts to ground the AI strictly to your proprietary curriculum.'}
             </p>
 
-            <div class="pdf-upload-box" id="pdf-drop-zone">
-              <div class="pdf-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div>
-              <div style="font-size: 0.88rem; font-weight: 600; color: var(--text-main);">
-                ${labState.customSyllabus ? ' ' + labState.customSyllabus.title : (isHinglish ? 'PDF / Text File Drop Karein' : 'Drop PDF / TXT Notes Here')}
+            ${labState.customSyllabus ? `
+              <!-- Ingested File State -->
+              <div class="ingested-file-card" id="ingested-file-card">
+                <div class="ingested-file-left">
+                  <div class="ingested-check-badge">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="ingested-filename">${labState.customSyllabus.title || 'custom_curriculum.txt'}</div>
+                    <div class="ingested-meta">
+                      <span class="meta-tag-chars">${labState.customSyllabus.sourceTextLength || 1024} chars parsed</span>
+                      <span>•</span>
+                      <span class="meta-tag-grounded">AI Grounded</span>
+                    </div>
+                  </div>
+                </div>
+                <button type="button" class="btn-clear-ingestion" id="btn-clear-syllabus" title="Remove custom syllabus">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                  </svg>
+                </button>
               </div>
-              <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 0.2rem;">
-                ${labState.customSyllabus ? `${labState.customSyllabus.sourceTextLength} chars ingested & grounded` : 'or click to browse local files'}
+            ` : `
+              <!-- Empty Dropzone State -->
+              <div class="pdf-upload-box" id="pdf-drop-zone" role="button" tabindex="0" title="Click or drop file to upload">
+                <div class="dropzone-icon-ring">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="17 8 12 3 7 8"></polyline>
+                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                  </svg>
+                </div>
+                <div class="dropzone-main-text">
+                  ${isHinglish ? 'PDF / TXT Notes Yahan Drop Karein' : 'Drop PDF / TXT Notes Here'}
+                </div>
+                <div class="dropzone-sub-text">
+                  ${isHinglish ? 'ya local files browse karne ke liye click karein' : 'or click to browse local files from device'}
+                </div>
+                <div class="dropzone-pills-row">
+                  <span class="file-type-pill">.PDF</span>
+                  <span class="file-type-pill">.TXT</span>
+                  <span class="file-type-pill">.MD</span>
+                  <span class="file-type-pill-action">Browse Files</span>
+                </div>
+                <input type="file" id="pdf-file-input" accept=".txt,.pdf,.md" style="display: none;" />
               </div>
-              <input type="file" id="pdf-file-input" accept=".txt,.pdf,.md" style="display: none;" />
-            </div>
+            `}
           </div>
         </div>
 
@@ -508,26 +559,60 @@ export function renderLearningLab(container) {
     });
   });
 
-  // Custom File Ingestion handlers
+  // Custom File Ingestion handlers with Drag & Drop
   const dropZone = container.querySelector('#pdf-drop-zone');
   const fileInput = container.querySelector('#pdf-file-input');
+  const clearBtn = container.querySelector('#btn-clear-syllabus');
+
+  function handleFile(file) {
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const text = event.target.result;
+      const parsed = youtube.parseCustomSyllabus(text);
+      parsed.title = file.name;
+      store.state.learningLab.customSyllabus = parsed;
+      soundFX.playSuccess();
+      store.addXP(30);
+      store.broadcastPresence(`${store.state.user.name} uploaded custom syllabus: ${file.name}`, 'note');
+      store.notify();
+    };
+    reader.readAsText(file);
+  }
 
   dropZone?.addEventListener('click', () => fileInput?.click());
+  dropZone?.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      fileInput?.click();
+    }
+  });
+
+  dropZone?.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    dropZone.classList.add('drag-over');
+  });
+
+  dropZone?.addEventListener('dragleave', () => {
+    dropZone.classList.remove('drag-over');
+  });
+
+  dropZone?.addEventListener('drop', (e) => {
+    e.preventDefault();
+    dropZone.classList.remove('drag-over');
+    const file = e.dataTransfer?.files?.[0];
+    if (file) handleFile(file);
+  });
 
   fileInput?.addEventListener('change', (e) => {
     const file = e.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        const text = event.target.result;
-        const parsed = youtube.parseCustomSyllabus(text);
-        store.state.learningLab.customSyllabus = parsed;
-        soundFX.playSuccess();
-        store.addXP(30);
-        store.broadcastPresence(`${store.state.user.name} uploaded custom syllabus: ${file.name}`, 'note');
-        store.notify();
-      };
-      reader.readAsText(file);
-    }
+    if (file) handleFile(file);
+  });
+
+  clearBtn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    store.state.learningLab.customSyllabus = null;
+    soundFX.playClick();
+    store.notify();
   });
 }

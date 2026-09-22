@@ -193,6 +193,29 @@
         "cloud-security": 1
       },
       "createdAt": "2026-09-22T10:26:02.293Z"
+    },
+    {
+      "id": "usr_1790074618831_7rjrw",
+      "username": "anubhavmohandas",
+      "email": "anubhav.manav147@gmail.com",
+      "passwordSalt": "16e590bdb8d508122872cdc6da039d5b",
+      "passwordHash": "408a944c914dbc010602ac0213d101f3ef6e867e9ab818df4388cb48d7c7485af4133cc8bc3d66931dffa12b593ceca020d01104d2e3f5b9a27dfbd60e3d639f",
+      "callSign": "anubhavmohandas",
+      "squad": "ZeroDay Hunters",
+      "targetTrack": "ad-kerberoasting",
+      "level": 3,
+      "xp": 1160,
+      "streak": 1,
+      "unlockedTiers": {
+        "ad-kerberoasting": 1,
+        "phishing-social-eng": 1,
+        "malware-defense": 1,
+        "network-exploitation": 1,
+        "identity-token": 1,
+        "cloud-security": 1,
+        "dyn_1790074681550": 2
+      },
+      "createdAt": "2026-09-22T10:56:58.831Z"
     }
   ],
   "sessions": [
@@ -219,9 +242,149 @@
       "userId": "usr_1790072762293_dwpvr",
       "createdAt": "2026-09-22T10:26:02.315Z",
       "expiresAt": "2026-09-29T10:26:02.315Z"
+    },
+    {
+      "token": "tok_607140f3e34efd0c6ed12c533d84822bb1079fd45c93a9f4",
+      "userId": "usr_1790074618831_7rjrw",
+      "createdAt": "2026-09-22T10:57:46.617Z",
+      "expiresAt": "2026-09-29T10:57:46.617Z"
     }
   ],
   "diagnostics": [
+    {
+      "id": "diag_1790074906886",
+      "userId": "guest",
+      "domain": "Mobile App Development",
+      "score": 50,
+      "missedCount": 1,
+      "missedQuestions": [
+        {
+          "id": "dyn_q_1",
+          "title": "Mobile App Development: Primary Attack Vector",
+          "titleHinglish": "Mobile App Development: Attack Vector Triage",
+          "microTopic": "Mobile App Development Fundamentals",
+          "scenario": "A SOC analyst detects anomalous activity involving Mobile App Development. The suspicious payload is captured in network telemetry.",
+          "scenarioHinglish": "Security team ko Mobile App Development se related suspicious network traffic detect hua hai.",
+          "evidenceType": "logs",
+          "evidence": "[ALERT_TRIG] Mobile App Development // SRC: 198.51.100.42 // DEST: 10.0.4.15:443 // PAYLOAD_LEN: 1024 // STATUS: SUSPICIOUS_INVOCATION",
+          "options": [
+            {
+              "text": "Exploit Attempt: The payload targets unverified input parameters and protocol trust flaws in Mobile App Development.",
+              "textHinglish": "Attack Attempt: Attacker Mobile App Development ke protocol flaw ko exploit karne ki koshish kar raha hai."
+            },
+            {
+              "text": "Normal administrative health check query from monitoring systems.",
+              "textHinglish": "Normal server health check status request hai."
+            },
+            {
+              "text": "Standard NTP clock synchronization packet.",
+              "textHinglish": "Standard network time sync packet hai."
+            },
+            {
+              "text": "Automatic SSL certificate renewal ping.",
+              "textHinglish": "SSL certificate renewal ping hai."
+            }
+          ],
+          "correctIndex": 0,
+          "el10": "Think of Mobile App Development like a locked gate. If the guard accepts a forged badge without calling the manager, an intruder walks straight in.",
+          "el10Hinglish": "Mobile App Development ko ek security gate ki tarah samjho. Agar guard bina signature check kiye gate khol de, to chor seedha andar ghus jata hai.",
+          "soWhat": "Overlooking Mobile App Development vulnerabilities allows malicious actors to establish persistence and compromise internal network perimeters.",
+          "remediationQuery": "Mobile App Development cybersecurity tutorial defense",
+          "cheatSheet": [
+            "Always validate inputs and cryptographically verify authentication tokens for Mobile App Development.",
+            "Enforce least-privilege access controls across all service accounts.",
+            "Monitor SIEM logs for anomalous invocation frequency."
+          ]
+        }
+      ],
+      "timestamp": "2026-09-22T11:01:46.886Z"
+    },
+    {
+      "id": "diag_1790074697961",
+      "userId": "usr_1790074618831_7rjrw",
+      "domain": "digital forensics",
+      "score": 0,
+      "missedCount": 2,
+      "missedQuestions": [
+        {
+          "id": "dyn_q_1",
+          "title": "digital forensics: Primary Attack Vector",
+          "titleHinglish": "digital forensics: Attack Vector Triage",
+          "microTopic": "digital forensics Fundamentals",
+          "scenario": "A SOC analyst detects anomalous activity involving digital forensics. The suspicious payload is captured in network telemetry.",
+          "scenarioHinglish": "Security team ko digital forensics se related suspicious network traffic detect hua hai.",
+          "evidenceType": "logs",
+          "evidence": "[ALERT_TRIG] digital forensics // SRC: 198.51.100.42 // DEST: 10.0.4.15:443 // PAYLOAD_LEN: 1024 // STATUS: SUSPICIOUS_INVOCATION",
+          "options": [
+            {
+              "text": "Exploit Attempt: The payload targets unverified input parameters and protocol trust flaws in digital forensics.",
+              "textHinglish": "Attack Attempt: Attacker digital forensics ke protocol flaw ko exploit karne ki koshish kar raha hai."
+            },
+            {
+              "text": "Normal administrative health check query from monitoring systems.",
+              "textHinglish": "Normal server health check status request hai."
+            },
+            {
+              "text": "Standard NTP clock synchronization packet.",
+              "textHinglish": "Standard network time sync packet hai."
+            },
+            {
+              "text": "Automatic SSL certificate renewal ping.",
+              "textHinglish": "SSL certificate renewal ping hai."
+            }
+          ],
+          "correctIndex": 0,
+          "el10": "Think of digital forensics like a locked gate. If the guard accepts a forged badge without calling the manager, an intruder walks straight in.",
+          "el10Hinglish": "digital forensics ko ek security gate ki tarah samjho. Agar guard bina signature check kiye gate khol de, to chor seedha andar ghus jata hai.",
+          "soWhat": "Overlooking digital forensics vulnerabilities allows malicious actors to establish persistence and compromise internal network perimeters.",
+          "remediationQuery": "digital forensics cybersecurity tutorial defense",
+          "cheatSheet": [
+            "Always validate inputs and cryptographically verify authentication tokens for digital forensics.",
+            "Enforce least-privilege access controls across all service accounts.",
+            "Monitor SIEM logs for anomalous invocation frequency."
+          ]
+        },
+        {
+          "id": "dyn_q_2",
+          "title": "digital forensics: Mitigation & Hardening",
+          "titleHinglish": "digital forensics: Hardening Strategy",
+          "microTopic": "digital forensics Defense",
+          "scenario": "Which defensive security control effectively neutralizes exploitation attempts against digital forensics?",
+          "scenarioHinglish": "digital forensics ke attacks ko rokne ke liye sabse best security rule kaun sa hai?",
+          "evidenceType": "code",
+          "evidence": "Policy Enforce [Rule: STRICT_ORIGIN_VERIFICATION] [Target: digital forensics] [Status: ACTIVE]",
+          "options": [
+            {
+              "text": "Rebooting the server daily at midnight.",
+              "textHinglish": "Har roz raat ko server restart karna."
+            },
+            {
+              "text": "Enforcing cryptographic origin binding, strong signature verification, and zero-trust authorization policies.",
+              "textHinglish": "Cryptographic signature verification, least privilege, aur strict authentication enforce karna."
+            },
+            {
+              "text": "Hiding the server IP behind an unencrypted HTTP proxy.",
+              "textHinglish": "Unencrypted proxy lagana."
+            },
+            {
+              "text": "Increasing disk partition storage limits.",
+              "textHinglish": "Hard drive size badhana."
+            }
+          ],
+          "correctIndex": 1,
+          "el10": "Security isn't about hiding; it's about checking real identity badges at every single door.",
+          "el10Hinglish": "Security ka matlab chupna nahi hai, balki har darwaze par asli ID card check karna hai.",
+          "soWhat": "Without strict hardening, digital forensics vulnerabilities will lead to catastrophic data exfiltration and credential compromise.",
+          "remediationQuery": "digital forensics hardening best practices",
+          "cheatSheet": [
+            "Apply security patches immediately upon vendor CVE release.",
+            "Enforce Multi-Factor Authentication with FIDO2 hardware keys.",
+            "Maintain audit trails and alert on abnormal permission escalations."
+          ]
+        }
+      ],
+      "timestamp": "2026-09-22T10:58:17.961Z"
+    },
     {
       "id": "diag_1790072806006",
       "userId": "usr_1790072762293_dwpvr",
