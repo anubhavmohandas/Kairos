@@ -13,6 +13,7 @@ import { renderMasteryArena } from './components/MasteryArena.js';
 import { renderSocialDashboard } from './components/SocialDashboard.js';
 import { setupELI5Tutor } from './components/ELI5Tutor.js';
 import { setupPitchDeckAndSettings } from './components/PitchDeckModal.js';
+import { setupAuthModal } from './components/AuthModal.js';
 
 class KairosApp {
   constructor() {
@@ -27,6 +28,7 @@ class KairosApp {
     // Setup persistent widgets
     setupELI5Tutor(this.tutorRoot);
     setupPitchDeckAndSettings(this.modalRoot);
+    setupAuthModal(this.modalRoot);
 
     // Initial render
     this.render();

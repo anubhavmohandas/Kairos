@@ -1,10 +1,12 @@
 /**
  * Kairos Centralized Reactive Store
- * Manages user progress, difficulty tiers, diagnostic state, language toggle, and social streams.
+ * Manages authenticated user state, difficulty tiers, dynamic diagnostic synthesis,
+ * language toggle, and backend persistence synchronization.
  */
 
 import { CYBER_DOMAINS } from '../data/cyberCurriculum.js';
 import { soundFX } from '../services/soundEffects.js';
+import { api } from '../services/apiClient.js';
 
 class StateStore {
   constructor() {
@@ -14,14 +16,17 @@ class StateStore {
     const savedState = this.loadPersistedState();
 
     this.state = {
-      // User Profile
+      // User Profile (Synchronized with Backend DB)
       user: {
-        name: 'Agent_Specter',
+        id: savedState?.user?.id || 'guest_user',
+        username: savedState?.user?.username || 'Agent_Specter',
+        name: savedState?.user?.callSign || savedState?.user?.username || 'Agent_Specter',
         level: savedState?.user?.level || 1,
         xp: savedState?.user?.xp || 350,
         streak: savedState?.user?.streak || 5,
         squad: savedState?.user?.squad || 'ZeroDay Hunters',
-        soundEnabled: true
+        soundEnabled: true,
+        isAuthenticated: Boolean(savedState?.user?.id && savedState.user.id !== 'guest_user')
       },
 
       // Language Mode: 'en' | 'hinglish'
@@ -113,6 +118,20 @@ class StateStore {
         }
       ]
     };
+
+    // Attempt to verify existing backend session
+    this.checkSession();
+  }
+
+  async checkSession() {
+    try {
+      const me = await api.getMe();
+      if (me) {
+        this.setUser(me);
+      }
+    } catch {
+      // Continue in guest mode
+    }
   }
 
   loadPersistedState() {
@@ -151,6 +170,36 @@ class StateStore {
     this.listeners.forEach(fn => fn(this.state));
   }
 
+  setUser(user) {
+    this.state.user = {
+      ...this.state.user,
+      ...user,
+      name: user.callSign || user.username || 'Agent_Operative',
+      isAuthenticated: true
+    };
+    if (user.unlockedTiers) {
+      this.state.unlockedTiers = { ...this.state.unlockedTiers, ...user.unlockedTiers };
+    }
+    this.broadcastPresence(`Operative ${this.state.user.name} authenticated into terminal.`, 'progress');
+    this.notify();
+  }
+
+  logout() {
+    api.logout();
+    this.state.user = {
+      id: 'guest_user',
+      username: 'Guest_Agent',
+      name: 'Guest_Agent',
+      level: 1,
+      xp: 100,
+      streak: 1,
+      squad: 'ZeroDay Hunters',
+      soundEnabled: true,
+      isAuthenticated: false
+    };
+    this.notify();
+  }
+
   setView(viewName) {
     this.state.currentView = viewName;
     soundFX.playClick();
@@ -176,6 +225,14 @@ class StateStore {
     this.resetDiagnostic();
     this.state.currentView = 'diagnostic';
     soundFX.playClick();
+    this.notify();
+  }
+
+  setActiveCustomDomain(customDomain) {
+    this.state.activeDomain = customDomain;
+    this.state.currentTier = 1;
+    this.resetDiagnostic();
+    this.state.currentView = 'diagnostic';
     this.notify();
   }
 
@@ -214,7 +271,7 @@ class StateStore {
     this.notify();
   }
 
-  finishDiagnostic() {
+  async finishDiagnostic() {
     const diagnostics = this.state.activeDomain.diagnostics;
     const answers = this.state.diagnostic.userAnswers;
     let correctCount = 0;
@@ -237,7 +294,14 @@ class StateStore {
     if (missed.length > 0) {
       this.state.learningLab.activeMicroTopic = missed[0].microTopic;
     } else {
-      this.state.learningLab.activeMicroTopic = diagnostics[0].microTopic;
+      this.state.learningLab.activeMicroTopic = diagnostics[0]?.microTopic || 'Threat Analysis';
+    }
+
+    // Persist evaluation with backend API
+    try {
+      await api.evaluateScenarios(this.state.activeDomain.title, missed, score);
+    } catch (e) {
+      console.warn('Backend diagnostic save bypassed:', e);
     }
 
     this.state.currentView = 'skill-gap';
@@ -252,6 +316,10 @@ class StateStore {
       soundFX.playFanfare();
       this.broadcastPresence(`${this.state.user.name} leveled up to Level ${this.state.user.level}!`, 'unlock');
     }
+
+    if (this.state.user.isAuthenticated) {
+      api.updateProfile({ xp: this.state.user.xp, level: this.state.user.level }).catch(() => {});
+    }
   }
 
   unlockNextTier(domainId) {
@@ -262,6 +330,10 @@ class StateStore {
       this.addXP(200);
       soundFX.playFanfare();
       this.broadcastPresence(`${this.state.user.name} unlocked Tier ${this.state.currentTier} in ${this.state.activeDomain.title}!`, 'unlock');
+      
+      if (this.state.user.isAuthenticated) {
+        api.updateProfile({ unlockedTiers: this.state.unlockedTiers }).catch(() => {});
+      }
     }
     this.notify();
   }
@@ -281,28 +353,41 @@ class StateStore {
     this.notify();
   }
 
-  addSquadNote(note) {
-    this.state.squadNotes.unshift({
-      id: 'sn_' + Date.now(),
-      author: this.state.user.name,
-      squad: this.state.user.squad,
-      topic: note.topic,
-      content: note.content,
-      contentHinglish: note.contentHinglish || note.content,
-      upvotes: 1,
-      timestamp: 'Just now'
-    });
+  async addSquadNote(note) {
+    try {
+      const saved = await api.postSquadNote({
+        author: this.state.user.name,
+        squad: this.state.user.squad,
+        topic: note.topic,
+        content: note.content,
+        contentHinglish: note.contentHinglish || note.content
+      });
+      this.state.squadNotes.unshift(saved);
+    } catch {
+      this.state.squadNotes.unshift({
+        id: 'sn_' + Date.now(),
+        author: this.state.user.name,
+        squad: this.state.user.squad,
+        topic: note.topic,
+        content: note.content,
+        contentHinglish: note.contentHinglish || note.content,
+        upvotes: 1,
+        timestamp: 'Just now'
+      });
+    }
+
     this.addXP(50);
     soundFX.playSuccess();
     this.broadcastPresence(`${this.state.user.name} posted a new tip to Squad Notes!`, 'note');
     this.notify();
   }
 
-  upvoteSquadNote(noteId) {
+  async upvoteSquadNote(noteId) {
     const note = this.state.squadNotes.find(n => n.id === noteId);
     if (note) {
       note.upvotes++;
       soundFX.playClick();
+      api.upvoteSquadNote(noteId).catch(() => {});
       this.notify();
     }
   }

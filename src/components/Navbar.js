@@ -1,7 +1,7 @@
 /**
  * Kairos Top HUD Navbar
- * Displays platform branding, user level, XP, daily streak flame, 
- * English/Hinglish language toggle, Audio toggle, and Hackathon Pitch Deck launcher.
+ * Displays platform branding, authenticated operative status, XP, streak,
+ * language toggle, Audio toggle, and Hackathon Pitch Deck launcher.
  */
 
 import { store } from '../state/store.js';
@@ -10,6 +10,7 @@ export function renderNavbar(container) {
   const state = store.getState();
   const isHinglish = state.language === 'hinglish';
   const tier = state.currentTier;
+  const user = state.user;
 
   container.innerHTML = `
     <nav class="cyber-nav">
@@ -33,14 +34,14 @@ export function renderNavbar(container) {
           <!-- Daily Streak -->
           <div class="stat-item" title="Active Learning Streak">
             <span class="streak-flame">🔥</span>
-            <span>${state.user.streak} ${isHinglish ? 'Din Streak' : 'Day Streak'}</span>
+            <span>${user.streak} ${isHinglish ? 'Din Streak' : 'Day Streak'}</span>
           </div>
 
           <div style="width: 1px; height: 16px; background: rgba(255,255,255,0.1);"></div>
 
           <!-- XP & Level -->
           <div class="stat-item" title="Current Cyber XP">
-            <span class="xp-pill">LVL ${state.user.level} // ${state.user.xp} XP</span>
+            <span class="xp-pill">LVL ${user.level} // ${user.xp} XP</span>
           </div>
 
           <div style="width: 1px; height: 16px; background: rgba(255,255,255,0.1);"></div>
@@ -53,6 +54,21 @@ export function renderNavbar(container) {
 
         <!-- Right Nav Actions -->
         <div class="nav-actions">
+          <!-- User Account Status / Login Button -->
+          ${user.isAuthenticated ? `
+            <div style="display: flex; align-items: center; gap: 0.5rem; background: rgba(0, 245, 212, 0.08); border: 1px solid var(--border-glow); padding: 0.3rem 0.75rem; border-radius: var(--radius-pill);">
+              <span style="font-size: 0.8rem; font-weight: 700; color: #fff;">👤 ${user.name}</span>
+              <span style="font-size: 0.7rem; font-family: var(--font-mono); color: var(--neon-cyan);">(${user.squad})</span>
+              <button id="nav-logout-btn" style="background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 0.75rem; margin-left: 0.2rem;" title="Logout">
+                🚪
+              </button>
+            </div>
+          ` : `
+            <button id="nav-login-btn" class="btn btn-outline-cyan btn-sm">
+              <span>👤 ${isHinglish ? 'Agent Login' : 'Operative Login'}</span>
+            </button>
+          `}
+
           <!-- Multilingual English / Hinglish Toggle -->
           <button id="nav-lang-toggle" class="lang-toggle-btn ${isHinglish ? 'active-hinglish' : ''}" title="Switch between English and Hinglish">
             <span>${isHinglish ? '🇮🇳 Hinglish' : '🌐 English'}</span>
@@ -60,7 +76,7 @@ export function renderNavbar(container) {
 
           <!-- Audio Toggle -->
           <button id="nav-sound-toggle" class="nav-icon-btn" title="Toggle Cyber Audio Synthesizer">
-            ${state.user.soundEnabled ? '🔊' : '🔇'}
+            ${user.soundEnabled ? '🔊' : '🔇'}
           </button>
 
           <!-- Settings / API Key Button -->
@@ -96,5 +112,13 @@ export function renderNavbar(container) {
 
   container.querySelector('#nav-settings-btn')?.addEventListener('click', () => {
     window.dispatchEvent(new CustomEvent('kairos:open-settings-modal'));
+  });
+
+  container.querySelector('#nav-login-btn')?.addEventListener('click', () => {
+    window.dispatchEvent(new CustomEvent('kairos:open-auth-modal', { detail: { mode: 'login' } }));
+  });
+
+  container.querySelector('#nav-logout-btn')?.addEventListener('click', () => {
+    store.logout();
   });
 }

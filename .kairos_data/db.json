@@ -1,0 +1,63 @@
+{
+  "users": [
+    {
+      "id": "usr_1790062110752_zxiz8",
+      "username": "operative_1790062110752",
+      "email": "operative_1790062110752@cybercorp.io",
+      "passwordHash": "9059ef40d116d2614f2beed8567028ca265c95313c72690afcc45f60796add86",
+      "callSign": "Zero_Ghost",
+      "squad": "RedTeam Alpha",
+      "targetTrack": "phishing-social-eng",
+      "level": 2,
+      "xp": 850,
+      "streak": 7,
+      "unlockedTiers": {
+        "phishing-social-eng": 1,
+        "malware-defense": 1,
+        "network-exploitation": 1,
+        "identity-token": 1,
+        "cloud-security": 1
+      },
+      "createdAt": "2026-09-22T07:28:30.752Z"
+    }
+  ],
+  "diagnostics": [],
+  "squadNotes": [
+    {
+      "id": "sn_1790062110753",
+      "author": "Zero_Ghost",
+      "authorId": "usr_1790062110752_zxiz8",
+      "squad": "RedTeam Alpha",
+      "topic": "Kerberoasting Triage Tip",
+      "content": "Look for Event ID 4769 with encryption type 0x17 (RC4).",
+      "contentHinglish": "Event ID 4769 check karo jisme RC4 encryption use hua ho.",
+      "upvotes": 2,
+      "timestamp": "Just now",
+      "createdAt": "2026-09-22T07:28:30.753Z"
+    },
+    {
+      "id": "sn_1",
+      "author": "Arjun_S",
+      "authorId": "u_arjun",
+      "squad": "ZeroDay Hunters",
+      "topic": "Subdomain Spoofing Rule of Thumb",
+      "content": "Read URLs backwards from the first slash (/): apex domain is right before the TLD (.com, .org). Never trust subdomains alone!",
+      "contentHinglish": "URL ko hamesha pehle slash (/) se ulta pado! Asli domain TLD ke theek pehle hota hai.",
+      "upvotes": 18,
+      "timestamp": "2 hours ago"
+    },
+    {
+      "id": "sn_2",
+      "author": "Priya_K",
+      "authorId": "u_priya",
+      "squad": "ZeroDay Hunters",
+      "topic": "DMARC p=none is useless",
+      "content": "Remember for the exam: DMARC p=none only generates telemetry reports. Only p=quarantine or p=reject blocks forged emails.",
+      "contentHinglish": "DMARC p=none sirf report banata hai, email block nahi karta. Block karne ke liye p=reject chahiye!",
+      "upvotes": 24,
+      "timestamp": "Yesterday"
+    }
+  ],
+  "duels": [],
+  "syllabi": []
+}
