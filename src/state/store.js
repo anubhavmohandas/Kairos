@@ -89,33 +89,53 @@ class StateStore {
 
       // Steam-style Live Presence Feed
       presenceFeed: [
-        { id: 'p1', user: 'Arjun_S', action: 'is mastering MFA Fatigue Protection', time: '1m ago', type: 'progress' },
-        { id: 'p2', user: 'Priya_K', action: 'unlocked Level 2: Malware Mechanics (+150 XP)', time: '3m ago', type: 'unlock' },
-        { id: 'p3', user: 'Vikram_R', action: 'won a 1v1 Scenario Duel vs ZeroDay_Bot (Score: 240)', time: '6m ago', type: 'duel' },
-        { id: 'p4', user: 'Sneha_M', action: 'added a note to Squad Notes: "Always check TLD apex"', time: '11m ago', type: 'note' },
-        { id: 'p5', user: 'Dev_G', action: 'is analyzing JWT alg:none signature bypass', time: '14m ago', type: 'progress' }
+        { id: 'p1', user: 'Anubhav_M', action: 'is mastering Active Directory Kerberoasting (+200 XP)', time: '1m ago', type: 'progress' },
+        { id: 'p2', user: 'Vedant_C', action: 'unlocked Level 3: Forensic Mastery (+250 XP)', time: '3m ago', type: 'unlock' },
+        { id: 'p3', user: 'Dhruv_R', action: 'won a 1v1 Scenario Duel on K8s Token Theft (Score: 280)', time: '6m ago', type: 'duel' },
+        { id: 'p4', user: 'Shakya_V', action: 'shipped Neo-Brutalist HUD & UI/UX Design System (+180 XP)', time: '9m ago', type: 'note' },
+        { id: 'p5', user: 'Anubhav_M', action: 'analyzing Event ID 4769 ticket encryption downgrade', time: '14m ago', type: 'progress' }
       ],
 
       // Squad Notes Collaborative Repository
       squadNotes: [
         {
           id: 'sn_1',
-          author: 'Arjun_S',
+          author: 'Anubhav Mohandas',
           squad: 'ZeroDay Hunters',
-          topic: 'Subdomain Spoofing Rule of Thumb',
-          content: 'Read URLs backwards from the first slash (/): apex domain is right before the TLD (.com, .org). Never trust subdomains alone!',
-          contentHinglish: 'URL ko hamesha pehle slash (/) se ulta pado! Asli domain TLD ke theek pehle hota hai.',
-          upvotes: 18,
-          timestamp: '2 hours ago'
+          topic: 'Kerberoasting SPN Target Selection',
+          content: 'Target user service accounts (svc_sql_prod) rather than machine accounts ($). User accounts have human-created static passwords crackable offline via Hashcat mode 13100.',
+          contentHinglish: 'User accounts (svc_sql_prod) ko target karo, computer accounts ($) ko nahi. User accounts ke passwords human-made hote hain jo offline crack ho sakte hain.',
+          upvotes: 32,
+          timestamp: '1 hour ago'
         },
         {
           id: 'sn_2',
-          author: 'Priya_K',
+          author: 'Shakya Vinit',
           squad: 'ZeroDay Hunters',
-          topic: 'DMARC p=none is useless',
-          content: 'Remember for the exam: DMARC p=none only generates telemetry reports. Only p=quarantine or p=reject blocks forged emails.',
-          contentHinglish: 'DMARC p=none sirf report banata hai, email block nahi karta. Block karne ke liye p=reject chahiye!',
-          upvotes: 24,
+          topic: 'UI/UX Cognitive Load Reduction',
+          content: 'Visual telemetry badges, high-contrast borders, and color-coded attack tags cut cognitive strain by 65%, allowing instant pattern recognition under incident triage.',
+          contentHinglish: 'High-contrast borders aur color-coded indicators se cognitive strain 65% kam ho jata hai aur attack vectors turant pehchane jaate hain.',
+          upvotes: 28,
+          timestamp: '2 hours ago'
+        },
+        {
+          id: 'sn_3',
+          author: 'Vedantkumar Chaudhri',
+          squad: 'ZeroDay Hunters',
+          topic: 'Gemini AI Telemetry Grounding',
+          content: 'Strict schema validation on Gemini API responses ensures 100% grounded evaluations with zero hallucinations when scoring student answers.',
+          contentHinglish: 'Gemini API me strict schema validation lagane se student evaluation 100% accurate aur zero-hallucination rehta hai.',
+          upvotes: 25,
+          timestamp: 'Yesterday'
+        },
+        {
+          id: 'sn_4',
+          author: 'Dhruv Rana',
+          squad: 'ZeroDay Hunters',
+          topic: 'Event ID 4769 Detection Logic',
+          content: 'Look for Ticket Encryption Type 0x17 (RC4-HMAC) in Kerberos Service Ticket Operations to flag suspicious downgrade activity.',
+          contentHinglish: 'SIEM logs me Ticket Encryption 0x17 (RC4-HMAC) check karo, ye suspicious downgrade attack ka sign hai.',
+          upvotes: 21,
           timestamp: 'Yesterday'
         }
       ]

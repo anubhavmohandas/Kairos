@@ -244,6 +244,9 @@ print(f"Total emojis found: {found}")
 ---
 
 ## Team & Credits
-- **Project Lead & Development**: Anubhav Mohandas & Shakya Vinit
+- **Anubhav Mohandas**: Lead Cybersecurity Architect & Core Full-Stack Systems
+- **Vedantkumar Chaudhri**: AI Systems & Cloud Backend Engineering
+- **Dhruv Rana**: Security Research & Offensive Threat Telemetry
+- **Shakya Vinit**: UI/UX Product Design & Frontend Experience Systems
 - **Repository**: [https://github.com/anubhavmohandas/Kairos](https://github.com/anubhavmohandas/Kairos)
 - **License**: MIT License

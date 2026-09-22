@@ -269,6 +269,24 @@
   ],
   "diagnostics": [
     {
+      "id": "diag_1790089105088",
+      "userId": "guest",
+      "domain": "html",
+      "score": 100,
+      "missedCount": 0,
+      "missedQuestions": [],
+      "timestamp": "2026-09-22T14:58:25.088Z"
+    },
+    {
+      "id": "diag_1790088743109",
+      "userId": "guest",
+      "domain": "Active Directory Kerberoasting Defense",
+      "score": 100,
+      "missedCount": 0,
+      "missedQuestions": [],
+      "timestamp": "2026-09-22T14:52:23.109Z"
+    },
+    {
       "id": "diag_1790076639446",
       "userId": "usr_1790076492506_uj30g",
       "domain": "metasploit",

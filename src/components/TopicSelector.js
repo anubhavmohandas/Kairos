@@ -251,7 +251,7 @@ export function renderTopicSelector(container) {
               </div>
               <div class="course-info-group">
                 <h3 class="course-title-text">Web Development Bootcamp</h3>
-                <span class="course-instructor-text">by Sarah Chen</span>
+                <span class="course-instructor-text">by Shakya Vinit</span>
               </div>
               <div class="course-rating-pill">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
@@ -286,7 +286,7 @@ export function renderTopicSelector(container) {
               </div>
               <div class="course-info-group">
                 <h3 class="course-title-text">UI/UX Design Mastery</h3>
-                <span class="course-instructor-text">by Mike Johnson</span>
+                <span class="course-instructor-text">by Shakya Vinit</span>
               </div>
               <div class="course-rating-pill">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
@@ -321,7 +321,7 @@ export function renderTopicSelector(container) {
               </div>
               <div class="course-info-group">
                 <h3 class="course-title-text">Data Science with Python</h3>
-                <span class="course-instructor-text">by Emily Davis</span>
+                <span class="course-instructor-text">by Vedantkumar Chaudhri</span>
               </div>
               <div class="course-rating-pill">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
@@ -355,7 +355,7 @@ export function renderTopicSelector(container) {
               </div>
               <div class="course-info-group">
                 <h3 class="course-title-text">Mobile App Development</h3>
-                <span class="course-instructor-text">by Alex Kim</span>
+                <span class="course-instructor-text">by Dhruv Rana</span>
               </div>
               <div class="course-rating-pill">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
@@ -389,7 +389,7 @@ export function renderTopicSelector(container) {
               </div>
               <div class="course-info-group">
                 <h3 class="course-title-text">Active Directory Defense</h3>
-                <span class="course-instructor-text">by Shakya Vinit</span>
+                <span class="course-instructor-text">by Anubhav Mohandas</span>
               </div>
               <div class="course-rating-pill">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
@@ -423,7 +423,7 @@ export function renderTopicSelector(container) {
               </div>
               <div class="course-info-group">
                 <h3 class="course-title-text">Quantum Cryptography Primer</h3>
-                <span class="course-instructor-text">by Dr. Elena Vance</span>
+                <span class="course-instructor-text">by Anubhav Mohandas & Dhruv Rana</span>
               </div>
               <div class="course-rating-pill">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
@@ -572,7 +572,7 @@ export function renderTopicSelector(container) {
         </p>
 
         <div class="testimonials-cards-grid">
-          <!-- Story 1 -->
+          <!-- Story 1: Anubhav Mohandas -->
           <div class="testimonial-card">
             <div class="star-rating-row">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="#eab308"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
@@ -581,17 +581,21 @@ export function renderTopicSelector(container) {
               <svg width="18" height="18" viewBox="0 0 24 24" fill="#eab308"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="#eab308"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
             </div>
-            <p class="testimonial-quote">"Kairos helped me transition from marketing to cybersecurity engineering. The courses are well-structured and the community is supportive!"</p>
+            <p class="testimonial-quote">
+              ${isHinglish
+                ? '"Kairos ko active reflection ke liye design kiya gaya hai taaki mindless scrolling khatam ho. Hamara AI diagnostic engine micro-weaknesses ko minutes me pinpoint karta hai."'
+                : '"Kairos was engineered from first principles to eradicate passive video consumption. Our adaptive AI diagnostic pinpoints micro-weaknesses in minutes with surgical precision."'}
+            </p>
             <div class="testimonial-author-row">
-              <div class="author-avatar-box bg-coral">J</div>
+              <img class="author-photo-avatar" src="anubhav_mohandas.jpg" alt="Anubhav Mohandas" onerror="this.src='/anubhav_mohandas.jpg'" />
               <div class="author-details">
-                <strong class="author-name">Jessica Wang</strong>
-                <span class="author-role">Software Security Engineer</span>
+                <strong class="author-name">Anubhav Mohandas</strong>
+                <span class="author-role">Lead Cybersecurity Architect & Full-Stack</span>
               </div>
             </div>
           </div>
 
-          <!-- Story 2 -->
+          <!-- Story 2: Vedantkumar Chaudhri -->
           <div class="testimonial-card">
             <div class="star-rating-row">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="#eab308"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
@@ -600,17 +604,21 @@ export function renderTopicSelector(container) {
               <svg width="18" height="18" viewBox="0 0 24 24" fill="#eab308"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="#eab308"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
             </div>
-            <p class="testimonial-quote">"The UI/UX and vulnerability diagnostics were exactly what I needed. I landed my dream SOC analyst job within 3 months!"</p>
+            <p class="testimonial-quote">
+              ${isHinglish
+                ? '"Google Gemini models aur grounded curriculum ke sath humne ek aisa closed-loop system banaya hai jo har student ke learning level par dynamically adapt hota hai."'
+                : '"Integrating Google Gemini models with YouTube video grounding created a closed-loop mastery workflow that dynamically adapts to every learner\\\'s cognitive speed."'}
+            </p>
             <div class="testimonial-author-row">
-              <div class="author-avatar-box bg-cyan">D</div>
+              <img class="author-photo-avatar" src="vedantkumar_chaudhri.jpg" alt="Vedantkumar Chaudhri" onerror="this.src='/vedantkumar_chaudhri.jpg'" />
               <div class="author-details">
-                <strong class="author-name">David Miller</strong>
-                <span class="author-role">SOC Lead & Analyst</span>
+                <strong class="author-name">Vedantkumar Chaudhri</strong>
+                <span class="author-role">AI Systems & Cloud Backend Lead</span>
               </div>
             </div>
           </div>
 
-          <!-- Story 3 -->
+          <!-- Story 3: Dhruv Rana -->
           <div class="testimonial-card">
             <div class="star-rating-row">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="#eab308"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
@@ -619,21 +627,25 @@ export function renderTopicSelector(container) {
               <svg width="18" height="18" viewBox="0 0 24 24" fill="#eab308"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="#eab308"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
             </div>
-            <p class="testimonial-quote">"Best platform investment I've made. The hands-on simulations gave me practical skills I use every single day at work."</p>
+            <p class="testimonial-quote">
+              ${isHinglish
+                ? '"Active Directory Kerberoasting se lekar K8s token theft tak, real telemetry scenarios se students ko practical frontline SOC investigation intuition milti hai."'
+                : '"From Active Directory Kerberoasting to K8s token theft, the real-world telemetry scenarios give learners true frontline SOC investigation intuition."'}
+            </p>
             <div class="testimonial-author-row">
-              <div class="author-avatar-box bg-purple">M</div>
+              <img class="author-photo-avatar" src="dhruv_rana.jpg" alt="Dhruv Rana" onerror="this.src='/dhruv_rana.jpg'" />
               <div class="author-details">
-                <strong class="author-name">Maria Garcia</strong>
-                <span class="author-role">Cloud Security Specialist</span>
+                <strong class="author-name">Dhruv Rana</strong>
+                <span class="author-role">Security Researcher & Threat Analyst</span>
               </div>
             </div>
           </div>
 
-          <!-- Story 4: Featured Spotlight with Shakya Vinit's Studio Portrait -->
+          <!-- Story 4: Featured Spotlight with Shakya Vinit (UI/UX) -->
           <div class="testimonial-card featured-testimonial">
             <div class="featured-student-badge">
               <span class="badge-pulse-indicator"></span>
-              <span>Top Scholar Spotlight</span>
+              <span>UI/UX & Product Design Spotlight</span>
             </div>
             <div class="star-rating-row">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="#eab308"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
@@ -642,12 +654,16 @@ export function renderTopicSelector(container) {
               <svg width="18" height="18" viewBox="0 0 24 24" fill="#eab308"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="#eab308"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
             </div>
-            <p class="testimonial-quote">"The AI-calibrated diagnostic found my exact system gaps in 5 minutes. The tailored 4-milestone roadmap cut my prep time by half!"</p>
+            <p class="testimonial-quote">
+              ${isHinglish
+                ? '"Neo-Brutalist HUD aur tactile design system par kaam karna bahut exciting tha. Hamara goal tha ki cybersecurity visually stunning aur completely distraction-free lage."'
+                : '"Designing the Neo-Brutalist HUD and tactical feedback was all about making complex cybersecurity feel accessible, lightning-fast, and visually exhilarating without any distraction."'}
+            </p>
             <div class="testimonial-author-row">
               <img class="author-photo-avatar" src="shakya_vinit.jpg" alt="Shakya Vinit" onerror="this.src='/shakya_vinit.jpg'" />
               <div class="author-details">
                 <strong class="author-name">Shakya Vinit</strong>
-                <span class="author-role">Computer Science & ML • Level 4 Scholar</span>
+                <span class="author-role">UI/UX Designer & Product Experience Lead</span>
               </div>
             </div>
           </div>

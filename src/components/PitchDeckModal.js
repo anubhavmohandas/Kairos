@@ -64,6 +64,18 @@ export function setupPitchDeckAndSettings(modalRoot) {
         '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h2"></path><path d="M18 9h2a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-2"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.45 1-1 1H7v4h10v-4h-2c-.55 0-1-.45-1-1v-2.34"></path><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"></path></svg> <strong>Adaptive Progression Loops:</strong> High-stakes mastery testing ensures concepts are truly locked in.'
       ],
       highlight: 'Final Takeaway: Kairos turns human vulnerability into an impenetrable defense perimeter.'
+    },
+    {
+      badge: 'SLIDE 06 // CORE ENGINEERING TEAM',
+      title: 'The Minds Behind Kairos',
+      subtitle: 'Cross-functional engineering team pioneering precision AI cybersecurity mastery.',
+      points: [
+        '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="7" r="4"></circle><path d="M5.5 21a8.38 8.38 0 0 1 13 0"></path></svg> <strong>Anubhav Mohandas:</strong> Lead Cybersecurity Architect & Full-Stack Systems Engineering.',
+        '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="7" r="4"></circle><path d="M5.5 21a8.38 8.38 0 0 1 13 0"></path></svg> <strong>Vedantkumar Chaudhri:</strong> AI Systems, Gemini Multi-Agent Orchestration & Cloud Infrastructure.',
+        '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="7" r="4"></circle><path d="M5.5 21a8.38 8.38 0 0 1 13 0"></path></svg> <strong>Dhruv Rana:</strong> Security Research, Offensive Threat Emulation & SIEM Telemetry.',
+        '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="7" r="4"></circle><path d="M5.5 21a8.38 8.38 0 0 1 13 0"></path></svg> <strong>Shakya Vinit:</strong> UI/UX Product Design, Neo-Brutalist HUD & Visual Experience Systems.'
+      ],
+      highlight: 'Core Team: Built for speed, precision, and cognitive cybersecurity skill retention.'
     }
   ];
 
