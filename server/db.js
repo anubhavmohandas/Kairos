@@ -6,6 +6,7 @@
 import fs from 'fs';
 import path from 'path';
 import crypto from 'crypto';
+import { firebaseBackend } from './services/firebaseBackend.js';
 
 const DATA_DIR = path.resolve(process.cwd(), '.kairos_data');
 const DB_FILE = path.join(DATA_DIR, 'db.json');
@@ -14,6 +15,7 @@ class Database {
   constructor() {
     this.data = {
       users: [],
+      sessions: [],
       diagnostics: [],
       squadNotes: [
         {
@@ -25,6 +27,7 @@ class Database {
           content: 'Read URLs backwards from the first slash (/): apex domain is right before the TLD (.com, .org). Never trust subdomains alone!',
           contentHinglish: 'URL ko hamesha pehle slash (/) se ulta pado! Asli domain TLD ke theek pehle hota hai.',
           upvotes: 18,
+          upvotedBy: [],
           timestamp: '2 hours ago'
         },
         {
@@ -36,6 +39,7 @@ class Database {
           content: 'Remember for the exam: DMARC p=none only generates telemetry reports. Only p=quarantine or p=reject blocks forged emails.',
           contentHinglish: 'DMARC p=none sirf report banata hai, email block nahi karta. Block karne ke liye p=reject chahiye!',
           upvotes: 24,
+          upvotedBy: [],
           timestamp: 'Yesterday'
         }
       ],
@@ -54,6 +58,9 @@ class Database {
         const raw = fs.readFileSync(DB_FILE, 'utf-8');
         const parsed = JSON.parse(raw);
         this.data = { ...this.data, ...parsed };
+        if (!Array.isArray(this.data.sessions)) {
+          this.data.sessions = [];
+        }
       } catch (e) {
         console.warn('Could not read existing db.json, initializing fresh store:', e);
       }
@@ -64,29 +71,106 @@ class Database {
 
   save() {
     try {
-      fs.writeFileSync(DB_FILE, JSON.stringify(this.data, null, 2), 'utf-8');
+      const tmpFile = DB_FILE + '.tmp';
+      fs.writeFileSync(tmpFile, JSON.stringify(this.data, null, 2), 'utf-8');
+      fs.renameSync(tmpFile, DB_FILE);
+      if (firebaseBackend.isConfigured()) {
+        firebaseBackend.syncToCloud('db', this.data).catch(() => {});
+      }
     } catch (e) {
-      console.error('Failed to save db.json:', e);
+      console.error('Failed to save db.json safely:', e);
     }
   }
 
-  // Password Hashing
-  hashPassword(password) {
-    return crypto.createHash('sha256').update(password).digest('hex');
+  // Password Hashing with PBKDF2 & Salt
+  hashPassword(password, salt) {
+    if (!salt) {
+      salt = crypto.randomBytes(16).toString('hex');
+    }
+    const hash = crypto.pbkdf2Sync(password, salt, 10000, 64, 'sha512').toString('hex');
+    return { salt, hash };
+  }
+
+  verifyPassword(password, salt, storedHash) {
+    if (!salt || !storedHash) return false;
+    // Legacy single-pass sha256 fallback for existing test accounts
+    if (salt === 'sha256_legacy') {
+      const legacyHash = crypto.createHash('sha256').update(password).digest('hex');
+      return legacyHash === storedHash;
+    }
+    const { hash } = this.hashPassword(password, salt);
+    try {
+      return crypto.timingSafeEqual(Buffer.from(hash, 'hex'), Buffer.from(storedHash, 'hex'));
+    } catch {
+      return false;
+    }
+  }
+
+  // Session Token Methods (Persisted in db.json)
+  createSession(userId, ttlMs = 7 * 24 * 60 * 60 * 1000) {
+    const token = 'tok_' + crypto.randomBytes(24).toString('hex');
+    const session = {
+      token,
+      userId,
+      createdAt: new Date().toISOString(),
+      expiresAt: new Date(Date.now() + ttlMs).toISOString()
+    };
+    if (!this.data.sessions) this.data.sessions = [];
+    this.data.sessions.push(session);
+    this.save();
+    return token;
+  }
+
+  getSession(token) {
+    if (!token || !this.data.sessions) return null;
+    const index = this.data.sessions.findIndex(s => s.token === token);
+    if (index === -1) return null;
+    const session = this.data.sessions[index];
+    if (new Date(session.expiresAt) < new Date()) {
+      this.data.sessions.splice(index, 1);
+      this.save();
+      return null;
+    }
+    return session;
+  }
+
+  deleteSession(token) {
+    if (!token || !this.data.sessions) return false;
+    const initialLen = this.data.sessions.length;
+    this.data.sessions = this.data.sessions.filter(s => s.token !== token);
+    if (this.data.sessions.length !== initialLen) {
+      this.save();
+      return true;
+    }
+    return false;
   }
 
   // User Methods
-  createUser({ username, email, password, callSign, squad = 'ZeroDay Hunters', targetTrack = 'phishing-social-eng' }) {
-    const existing = this.data.users.find(u => u.username.toLowerCase() === username.toLowerCase() || u.email.toLowerCase() === email.toLowerCase());
+  createUser({ username, email = '', password, callSign, squad = 'ZeroDay Hunters', targetTrack = 'phishing-social-eng' }) {
+    if (!username || typeof username !== 'string' || !password || typeof password !== 'string') {
+      throw new Error('Username and password are required.');
+    }
+    const cleanUsername = username.trim().toLowerCase();
+    const cleanEmail = email && typeof email === 'string' ? email.trim().toLowerCase() : '';
+
+    const existing = this.data.users.find(u => {
+      const uName = u.username ? u.username.toLowerCase() : '';
+      const uMail = u.email ? u.email.toLowerCase() : '';
+      return (uName && uName === cleanUsername) || (cleanEmail && uMail && uMail === cleanEmail);
+    });
+
     if (existing) {
       throw new Error('User with this username or email already exists.');
     }
 
+    const { salt, hash } = this.hashPassword(password);
+
     const user = {
       id: 'usr_' + Date.now() + '_' + Math.random().toString(36).substring(2, 7),
       username,
-      email,
-      passwordHash: this.hashPassword(password),
+      email: email || '',
+      passwordSalt: salt,
+      passwordHash: hash,
       callSign: callSign || `Agent_${username}`,
       squad: squad || 'ZeroDay Hunters',
       targetTrack: targetTrack || 'phishing-social-eng',
@@ -109,13 +193,25 @@ class Database {
   }
 
   authenticateUser(usernameOrEmail, password) {
-    const hash = this.hashPassword(password);
-    const user = this.data.users.find(
-      u => (u.username.toLowerCase() === usernameOrEmail.toLowerCase() || u.email.toLowerCase() === usernameOrEmail.toLowerCase()) && u.passwordHash === hash
-    );
+    if (!usernameOrEmail || !password) {
+      throw new Error('Username/email and password are required.');
+    }
+    const cleanInput = usernameOrEmail.trim().toLowerCase();
+    const user = this.data.users.find(u => {
+      const uName = u.username ? u.username.toLowerCase() : '';
+      const uMail = u.email ? u.email.toLowerCase() : '';
+      return uName === cleanInput || (uMail && uMail === cleanInput);
+    });
+
     if (!user) {
       throw new Error('Invalid username or password.');
     }
+
+    const salt = user.passwordSalt || 'sha256_legacy';
+    if (!this.verifyPassword(password, salt, user.passwordHash)) {
+      throw new Error('Invalid username or password.');
+    }
+
     return this.sanitizeUser(user);
   }
 
@@ -131,7 +227,11 @@ class Database {
     const allowed = ['callSign', 'squad', 'targetTrack', 'xp', 'level', 'streak', 'unlockedTiers'];
     allowed.forEach(field => {
       if (updates[field] !== undefined) {
-        user[field] = updates[field];
+        if ((field === 'xp' || field === 'level' || field === 'streak') && typeof updates[field] === 'number') {
+          user[field] = Math.max(0, updates[field]);
+        } else if (typeof updates[field] === 'string' || typeof updates[field] === 'object') {
+          user[field] = updates[field];
+        }
       }
     });
 
@@ -140,7 +240,7 @@ class Database {
   }
 
   sanitizeUser(user) {
-    const { passwordHash, ...safe } = user;
+    const { passwordHash, passwordSalt, ...safe } = user;
     return safe;
   }
 
@@ -165,7 +265,7 @@ class Database {
 
   addSquadNote({ author, authorId, squad, topic, content, contentHinglish }) {
     const note = {
-      id: 'sn_' + Date.now(),
+      id: 'sn_' + Date.now() + '_' + Math.random().toString(36).substring(2, 5),
       author,
       authorId,
       squad: squad || 'ZeroDay Hunters',
@@ -173,6 +273,7 @@ class Database {
       content,
       contentHinglish: contentHinglish || content,
       upvotes: 1,
+      upvotedBy: authorId && authorId !== 'anon' ? [authorId] : [],
       timestamp: 'Just now',
       createdAt: new Date().toISOString()
     };
@@ -181,15 +282,23 @@ class Database {
     return note;
   }
 
-  upvoteSquadNote(noteId) {
+  upvoteSquadNote(noteId, userId = 'anon') {
     const note = this.data.squadNotes.find(n => n.id === noteId);
-    if (note) {
-      note.upvotes++;
-      this.save();
-      return note;
+    if (!note) throw new Error('Note not found');
+
+    if (!note.upvotedBy) note.upvotedBy = [];
+    if (userId !== 'anon' && note.upvotedBy.includes(userId)) {
+      throw new Error('You have already upvoted this note.');
     }
-    throw new Error('Note not found');
+
+    note.upvotes++;
+    if (userId !== 'anon') {
+      note.upvotedBy.push(userId);
+    }
+    this.save();
+    return note;
   }
 }
 
 export const db = new Database();
+

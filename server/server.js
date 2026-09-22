@@ -31,20 +31,18 @@ try {
 } catch {}
 
 const PORT = process.env.PORT || 3000;
-const SESSIONS = new Map(); // token -> userId
 
-// JWT / Session Token Helpers
+// Session Helpers (backed by db.json persistent store)
 function generateToken(userId) {
-  const token = 'tok_' + crypto.randomBytes(24).toString('hex');
-  SESSIONS.set(token, userId);
-  return token;
+  return db.createSession(userId);
 }
 
 function getUserIdFromReq(req) {
   const authHeader = req.headers['authorization'] || '';
   if (authHeader.startsWith('Bearer ')) {
     const token = authHeader.substring(7);
-    return SESSIONS.get(token) || null;
+    const session = db.getSession(token);
+    return session ? session.userId : null;
   }
   return null;
 }
@@ -77,7 +75,11 @@ function sendJSON(res, statusCode, data) {
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-    'Access-Control-Allow-Headers': 'Content-Type, Authorization'
+    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+    'X-Content-Type-Options': 'nosniff',
+    'X-Frame-Options': 'DENY',
+    'X-XSS-Protection': '1; mode=block',
+    'Referrer-Policy': 'strict-origin-when-cross-origin'
   });
   res.end(JSON.stringify(data));
 }
@@ -88,10 +90,10 @@ function sendError(res, statusCode, message) {
 
 // MIME Type Map for Static File Serving
 const MIME_TYPES = {
-  '.html': 'text/html',
-  '.css': 'text/css',
-  '.js': 'application/javascript',
-  '.json': 'application/json',
+  '.html': 'text/html; charset=utf-8',
+  '.css': 'text/css; charset=utf-8',
+  '.js': 'application/javascript; charset=utf-8',
+  '.json': 'application/json; charset=utf-8',
   '.png': 'image/png',
   '.jpg': 'image/jpeg',
   '.svg': 'image/svg+xml',
@@ -110,7 +112,9 @@ const server = http.createServer(async (req, res) => {
     res.writeHead(204, {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type, Authorization'
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+      'X-Content-Type-Options': 'nosniff',
+      'X-Frame-Options': 'DENY'
     });
     return res.end();
   }
@@ -142,7 +146,17 @@ const server = http.createServer(async (req, res) => {
       return sendJSON(res, 200, { user, token });
     }
 
-    // 3. AUTH: Me (Profile)
+    // 3. AUTH: Logout
+    if (pathname === '/api/auth/logout' && method === 'POST') {
+      const authHeader = req.headers['authorization'] || '';
+      if (authHeader.startsWith('Bearer ')) {
+        const token = authHeader.substring(7);
+        db.deleteSession(token);
+      }
+      return sendJSON(res, 200, { success: true });
+    }
+
+    // 4. AUTH: Me (Profile)
     if (pathname === '/api/auth/me' && method === 'GET') {
       const userId = getUserIdFromReq(req);
       if (!userId) {
@@ -153,7 +167,7 @@ const server = http.createServer(async (req, res) => {
       return sendJSON(res, 200, { user });
     }
 
-    // 4. AUTH: Update Profile
+    // 5. AUTH: Update Profile
     if (pathname === '/api/auth/profile' && method === 'PUT') {
       const userId = getUserIdFromReq(req);
       if (!userId) return sendError(res, 401, 'Unauthorized session.');
@@ -162,7 +176,7 @@ const server = http.createServer(async (req, res) => {
       return sendJSON(res, 200, { user: updated });
     }
 
-    // 5. SCENARIOS: 100% Dynamic Synthesis for ANY Topic
+    // 6. SCENARIOS: 100% Dynamic Synthesis for ANY Topic
     if (pathname === '/api/scenarios/generate' && method === 'POST') {
       const body = await parseJSONBody(req);
       const topic = body.topic || 'Web Application Exploitation';
@@ -173,7 +187,7 @@ const server = http.createServer(async (req, res) => {
       return sendJSON(res, 200, scenarios);
     }
 
-    // 6. SCENARIOS: Dynamic Evaluation & Skill-Gap Schema
+    // 7. SCENARIOS: Dynamic Evaluation & Skill-Gap Schema
     if (pathname === '/api/scenarios/evaluate' && method === 'POST') {
       const body = await parseJSONBody(req);
       const userId = getUserIdFromReq(req);
@@ -202,7 +216,7 @@ const server = http.createServer(async (req, res) => {
       });
     }
 
-    // 7. TUTOR: Dynamic ELI5 Explanations
+    // 8. TUTOR: Dynamic ELI5 Explanations
     if (pathname === '/api/tutor/ask' && method === 'POST') {
       const body = await parseJSONBody(req);
       const { topic, userQuery, language } = body;
@@ -210,28 +224,39 @@ const server = http.createServer(async (req, res) => {
       return sendJSON(res, 200, { explanation });
     }
 
-    // 8. YOUTUBE: Dynamic Video Search
+    // 9. YOUTUBE: Dynamic Video Search
     if (pathname === '/api/youtube/search' && method === 'GET') {
       const query = parsedUrl.query.query || 'cybersecurity defense fundamentals';
       const video = await youtubeBackend.searchVideo(query);
       return sendJSON(res, 200, video);
     }
 
-    // 9. SQUADS: Get Notes
+    // 10. SQUADS: Get Notes
     if (pathname === '/api/squads/notes' && method === 'GET') {
       const squad = parsedUrl.query.squad;
       const notes = db.getSquadNotes(squad);
       return sendJSON(res, 200, { notes });
     }
 
-    // 10. SQUADS: Post Note
+    // 11. SQUADS: Post Note
     if (pathname === '/api/squads/notes' && method === 'POST') {
       const userId = getUserIdFromReq(req);
       const body = await parseJSONBody(req);
+      let authorName = body.author || 'Agent_Operative';
+      let squadName = body.squad || 'ZeroDay Hunters';
+
+      if (userId) {
+        const currentUser = db.getUserById(userId);
+        if (currentUser) {
+          authorName = currentUser.callSign || currentUser.username;
+          squadName = currentUser.squad || squadName;
+        }
+      }
+
       const note = db.addSquadNote({
-        author: body.author || 'Agent_Operative',
+        author: authorName,
         authorId: userId || 'anon',
-        squad: body.squad || 'ZeroDay Hunters',
+        squad: squadName,
         topic: body.topic,
         content: body.content,
         contentHinglish: body.contentHinglish
@@ -239,15 +264,19 @@ const server = http.createServer(async (req, res) => {
       return sendJSON(res, 201, { note });
     }
 
-    // 11. SQUADS: Upvote Note
+    // 12. SQUADS: Upvote Note
     if (pathname.startsWith('/api/squads/notes/') && pathname.endsWith('/upvote') && method === 'POST') {
+      const userId = getUserIdFromReq(req);
+      if (!userId) {
+        return sendError(res, 401, 'Authentication required to upvote notes.');
+      }
       const parts = pathname.split('/');
       const noteId = parts[parts.length - 2];
-      const updated = db.upvoteSquadNote(noteId);
+      const updated = db.upvoteSquadNote(noteId, userId);
       return sendJSON(res, 200, { note: updated });
     }
 
-    // 12. DUELS: Dynamic Speed Scenario Round
+    // 13. DUELS: Dynamic Speed Scenario Round
     if (pathname === '/api/duels/generate-round' && method === 'POST') {
       const body = await parseJSONBody(req);
       const round = geminiBackend.generateDuelRound(body.topic);
@@ -261,18 +290,20 @@ const server = http.createServer(async (req, res) => {
   // ==========================================
   // STATIC FILE SERVING FOR CLIENT SPA
   // ==========================================
-  let filePath = path.join(process.cwd(), pathname === '/' ? 'index.html' : pathname);
+  const normalizedPath = path.normalize(pathname).replace(/^(\.\.[\/\\])+/, '');
+  let filePath = path.join(process.cwd(), normalizedPath === '/' || normalizedPath === '\\' ? 'index.html' : normalizedPath);
 
-  // Security check: keep inside workspace
-  if (!filePath.startsWith(process.cwd())) {
-    res.writeHead(403);
+  // Security check: strictly enforce path containment inside current directory
+  const rootDir = process.cwd();
+  if (!filePath.startsWith(rootDir)) {
+    res.writeHead(403, { 'X-Content-Type-Options': 'nosniff' });
     return res.end('Forbidden');
   }
 
   fs.stat(filePath, (err, stats) => {
     if (err || !stats.isFile()) {
       // SPA Fallback: serve index.html
-      filePath = path.join(process.cwd(), 'index.html');
+      filePath = path.join(rootDir, 'index.html');
     }
 
     const ext = path.extname(filePath).toLowerCase();
@@ -280,10 +311,15 @@ const server = http.createServer(async (req, res) => {
 
     fs.readFile(filePath, (readErr, content) => {
       if (readErr) {
-        res.writeHead(404);
+        res.writeHead(404, { 'X-Content-Type-Options': 'nosniff' });
         return res.end('Not Found');
       }
-      res.writeHead(200, { 'Content-Type': contentType });
+      res.writeHead(200, {
+        'Content-Type': contentType,
+        'X-Content-Type-Options': 'nosniff',
+        'X-Frame-Options': 'DENY',
+        'Referrer-Policy': 'strict-origin-when-cross-origin'
+      });
       res.end(content);
     });
   });

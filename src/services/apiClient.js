@@ -87,7 +87,14 @@ class ApiClient {
     return data.user;
   }
 
-  logout() {
+  async logout() {
+    if (this.token) {
+      try {
+        await this.request('/api/auth/logout', { method: 'POST' });
+      } catch (e) {
+        console.warn('Server logout error:', e);
+      }
+    }
     this.setToken('');
   }
 

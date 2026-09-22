@@ -71,3 +71,4 @@ yarn-error.log*
 pnpm-debug.log*
 tmp/
 temp/
+.kairos_data/
